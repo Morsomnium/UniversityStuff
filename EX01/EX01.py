@@ -32,7 +32,7 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2):
     elif jump_distance2/sleep2 > jump_distance1/sleep1 and pos2 > pos1 :
         a = -1
     else:
-        for x in range (10) :
+        while pos1 != pos2 :
             pos1 += jump_distance1 / sleep1
             a = pos1
             pos2 += round(jump_distance2 / sleep2, 6)
