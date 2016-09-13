@@ -32,34 +32,18 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2):
     elif jump_distance2/sleep2 > jump_distance1/sleep1 and pos2 > pos1 :
         a = -1
     else:
-        count = 0
-        pos1 += jump_distance1
-        pos2 += jump_distance2
-        if pos1 > pos2:
-            while pos1 != pos2 and pos1 > pos2:
-                count += 1
-                if count % sleep1:
-                    pos1 += jump_distance1
-                elif count % sleep2:
-                    pos2 += jump_distance2
-            else:
-                if pos1 > pos2 :
-                    a = -1
-                else:
-                    a = pos1
-        else:
-            while pos1 != pos2 and pos2 > pos1:
-                count += 1
-                if count % sleep1:
-                    pos1 += jump_distance1
-                elif count % sleep2:
-                    pos2 += jump_distance2
-            else:
-                if pos2 > pos1:
-                    a = -1
-                else:
-                    a = pos1
+        for x in range (10) :
+            pos1 += jump_distance1 / sleep1
+            a = pos1
+            pos2 += round(jump_distance2 / sleep2, 6)
+            b = pos2
+            print(a, b)
 
-    return a
+    return b
 
-print(meet_me(1, 7, 1, 14, 5, 1))
+#print(meet_me(1, 7, 1, 15, 5, 1)) #50
+#print(meet_me(1, 2, 1, 2, 1, 1)) #3
+#print(meet_me(1, 2, 3, 4, 5, 5)) #-1
+#print(meet_me(100, 7, 4, 300, 8, 6)) #940
+print(meet_me(10, 7, 7, 5, 8, 6)) #25
+#print(meet_me(1, 7, 1, 14, 5, 1))
