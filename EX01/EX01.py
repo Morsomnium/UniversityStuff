@@ -32,18 +32,26 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2):
                 pos1 += Fraction(jump_distance1, sleep1)
                 a = pos1
                 pos2 += Fraction(jump_distance2, sleep2)
-                if pos1 > pos2:
+                if pos2 > pos1:
                     a = -1
+                    break
         elif pos2 > pos1:
             while pos1 != pos2:
                 pos1 += Fraction(jump_distance1, sleep1)
                 a = pos1
                 pos2 += Fraction(jump_distance2, sleep2)
-                print(pos1, pos2)
-                if pos2 > pos1:
+                if pos1 > pos2:
                     a = -1
                     break
     return a
 
 
-print(meet_me(1, 15, 6, 5, 0, 3))
+print(meet_me(1, 15, 6, 5, 0, 3)) # -1
+print(meet_me(1, 2, 1, 2, 1, 1)) # 3
+print(meet_me(1, 2, 3, 4, 5, 5)) # -1
+print(meet_me(10, 7, 7, 5, 8, 6)) # 25
+print(meet_me(100, 7, 4, 300, 8, 6)) # 940
+print(meet_me(1, 7, 1, 15, 5, 1)) # 50
+print(meet_me(0, 7, 3, 3, 5, 2)) # -1
+print(meet_me(0, 5, 1, 1, 5, 1)) # -1
+print(meet_me(0, 6, 3, 3, 8, 4)) # -1
