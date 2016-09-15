@@ -1,20 +1,26 @@
+from fractions import Fraction
+
+
 def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2):
-
-    if sleep1>sleep2:
-        a = sleep1
-        posA = pos1
-        jumpA = jump_distance1
-        b = sleep2
-        posB = pos2
-        jumpB = jump_distance2
+    if pos1 == pos2:
+        a = pos1
+    elif (jump_distance1 / sleep1 > jump_distance2 / sleep2 and pos1 > pos2) or (jump_distance2 / sleep2 > jump_distance1 / sleep1 and pos2 > pos1):
+        a = -1
+    elif jump_distance1 / sleep1 == jump_distance2 / sleep2:
+        a = -1
     else:
-        a = sleep2
-        posA = pos2
-        jumpA = jump_distance2
-        b = sleep1
-        posB = pos1
-        jumpB = jump_distance1
-
-    if pos1 != pos2:
-        for x in range(0, a) :
-            
+        if pos1 > pos2:
+            while pos1 != pos2:
+                pos1 += Fraction(jump_distance1, sleep1)
+                a = pos1
+                pos2 += Fraction(jump_distance2, sleep2)
+                if pos1 > pos2:
+                    a = -1
+        elif pos2 > pos1:
+            while pos1 != pos2:
+                pos1 += Fraction(jump_distance1, sleep1)
+                a = pos1
+                pos2 += Fraction(jump_distance2, sleep2)
+                if pos2 > pos1:
+                    a = -1
+    return a
