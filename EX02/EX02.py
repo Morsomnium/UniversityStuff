@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 0.3
+:version: 0.4
 :failed: all ;)
 """
 
