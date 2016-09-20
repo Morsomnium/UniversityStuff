@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 0.4
+:version: 0.5
 :failed: all ;)
 """
 
@@ -59,7 +59,6 @@ def find_free(equation):
     if free is not None:
         free_pos = free.start()
         free = free.group().strip()
-        print(free, '++22++')
         if free[-1] == '+' or free[-1] == '-' or free[-1] == '=':
             free = free[:-1].strip()
         if free[0] == '=':
@@ -76,7 +75,6 @@ def find_free(equation):
 def space_insert(checked):
     p = re.compile('(\+|-)')
     var1 = p.search(checked)
-    print(checked)
     if var1 is not None and checked[1] != ' ':
         checked = checked[0] + ' ' + checked[1:]
     return checked
@@ -107,7 +105,6 @@ def xminus():
     global square
     global linear
     global free
-    print(square[0])
     if square[0] == '-':
         square = side_swap(square)
         if linear != '':
@@ -115,6 +112,13 @@ def xminus():
         if free != '':
             free = side_swap(free)
     return square, linear, free
+
+
+def space_check(equation):
+    for i in range(len(equation)-1, 0, -1):
+        if equation[i] == ' ' and equation[i+1] == ' ':
+            equation = equation[:i+1] + equation[i+2:]
+    return equation
 
 
 def normalize_equation(equation):
@@ -126,6 +130,7 @@ def normalize_equation(equation):
     find_free(equation)
     xminus()
     equation = '{} {} {} = 0'.format(square, linear, free).strip()
+    equation = space_check(equation)
     if equation[0] == '+':
         equation = equation[2:]
     print('square:', square)
@@ -134,8 +139,8 @@ def normalize_equation(equation):
     return equation
 
 # print(normalize_equation("x2 + 2x = 3"))  # "x2 + 2x - 3 = 0"
-print(normalize_equation("0 = 3 + 1x2"))  # "x2 + 3 = 0"
-# print(normalize_equation("2x + 2 = 2x2"))  # "2x2 - 2x - 2 = 0"
+# print(normalize_equation("0 = 0 + 1x2"))  # "x2 + 3 = 0"
+# (normalize_equation("2x + 2 = 2x2"))  # "2x2 - 2x - 2 = 0"
 
 
 def solve_equation(equation):
