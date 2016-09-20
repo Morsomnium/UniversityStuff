@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 0.5
+:version: 0.6
 :failed: all ;)
 """
 
@@ -13,7 +13,7 @@ import re
 def find_square(equation):
     global square
     global square_pos
-    p = re.compile('(\+|-|=)?\s*[1-9]?\d*(x2)')
+    p = re.compile('(\+|-|=)?\s*[1-9]?\d*(x2)(\+|-|=|\s)')
     square = p.search(equation)
     if square is not None:
         square_pos = square.start(0)
@@ -54,7 +54,7 @@ def find_linear(equation):
 def find_free(equation):
     global free
     global free_pos
-    p = re.compile('(\+|-)?(\W|\s)?[^x][1-9](\d+)?[^x]')
+    p = re.compile('(\+|-)?(\W|\s)?(^x|=|\+|-|\s|^)[1-9](\d+)?(^x|=|\+|-|\s|$)')
     free = p.search(equation)
     if free is not None:
         free_pos = free.start()
@@ -105,19 +105,20 @@ def xminus():
     global square
     global linear
     global free
-    if square[0] == '-':
-        square = side_swap(square)
-        if linear != '':
-            linear = side_swap(linear)
-        if free != '':
-            free = side_swap(free)
+    if square != '':
+        if square[0] == '-':
+            square = side_swap(square)
+            if linear != '':
+                linear = side_swap(linear)
+            if free != '':
+                free = side_swap(free)
     return square, linear, free
 
 
 def space_check(equation):
-    for i in range(len(equation)-1, 0, -1):
-        if equation[i] == ' ' and equation[i+1] == ' ':
-            equation = equation[:i+1] + equation[i+2:]
+    for i in range(len(equation) - 1, 0, -1):
+        if equation[i] == ' ' and equation[i + 1] == ' ':
+            equation = equation[:i + 1] + equation[i + 2:]
     return equation
 
 
@@ -138,9 +139,9 @@ def normalize_equation(equation):
     print('free:', free)
     return equation
 
-# print(normalize_equation("x2 + 2x = 3"))  # "x2 + 2x - 3 = 0"
-# print(normalize_equation("0 = 0 + 1x2"))  # "x2 + 3 = 0"
-# (normalize_equation("2x + 2 = 2x2"))  # "2x2 - 2x - 2 = 0"
+print(normalize_equation("2x + x2 - 3 = 0"))  # "x2 + 2x - 3 = 0"
+# print(normalize_equation("0 = 3 + 1x2"))  # "x2 + 3 = 0"
+# print(normalize_equation("2x + 2 = 2x2"))  # "2x2 - 2x - 2 = 0"
 
 
 def solve_equation(equation):
