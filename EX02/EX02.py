@@ -6,12 +6,17 @@ Normalize and solve equations.
 :failed: all ;)
 """
 
-
 import re
 import math
 
 
 def find_square(equation):
+    """
+    Function for finding squared part in equation.
+
+    :param equation: where to find squared part
+    :return: squared part and its position
+    """
     global square
     global square_pos
     p = re.compile('(\+|-|=)?\s*[1-9]?\d*(x2)(\+|-|=|\s)')
@@ -36,6 +41,12 @@ def find_square(equation):
 
 
 def find_linear(equation):
+    """
+    Function for finding linear part in equation.
+
+    :param equation: where to find linear part
+    :return: linear part and its position
+    """
     global linear
     global linear_pos
     p = re.compile('(\+|-|=)?\s*\d*x[^2]')
@@ -59,6 +70,12 @@ def find_linear(equation):
 
 
 def find_free(equation):
+    """
+    Function for finding free part in equation.
+
+    :param equation: where to find free part
+    :return: free part and its position
+    """
     global free
     global free_pos
     p = re.compile('(\+|-)?(\W|\s)?(^x|=|\+|-|\s|^)[1-9](\d+)?(^x|=|\+|-|\s|$)')
@@ -187,7 +204,10 @@ def normalize_equation(equation):
     print('free:', free)
     return equation
 
+
 print(normalize_equation("2x + x2 - 3 = 0"))  # "x2 + 2x - 3 = 0"
+
+
 # print(normalize_equation("0 = 3 + 1x2"))  # "x2 + 3 = 0"
 # print(normalize_equation("2x + 2 = 2x2"))  # "2x2 - 2x - 2 = 0"
 
@@ -197,9 +217,9 @@ def solve_equation(equation):
     solve_ready()
     print(a, b, c)
     if a != 0:
-        d = (b**2) - (4*(a*c))
+        d = (b ** 2) - (4 * (a * c))
         if d < 0:
-           answer = 'None'
+            answer = 'None'
         elif d == 0:
             x1 = -b / (2 * a)
             answer = 'x = ', round(x1, 2)
@@ -216,4 +236,5 @@ def solve_equation(equation):
         answer = 'None'
     return answer
 
-print(solve_equation("2x2 + 2 = 0"))
+
+print(solve_equation("9x2 -12x +4 = 0"))
