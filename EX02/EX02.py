@@ -250,7 +250,7 @@ def normalize_equation(equation):
 
 def solve_equation(equation):
     """
-    It slices, it dices and also solves equations!
+    It slices, it dices and also solves equations!.
 
     :param equation: main program input
     :return: answer(s) for equation
@@ -276,4 +276,3 @@ def solve_equation(equation):
     else:
         answer = 'None'
     return answer
-
