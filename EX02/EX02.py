@@ -2,12 +2,13 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 0.6
+:version: 1.0
 :failed: all ;)
 """
 
 
 import re
+import math
 
 
 def find_square(equation):
@@ -22,9 +23,12 @@ def find_square(equation):
             square = square[:-1].strip()
         if square[0] == '=':
             square = square[1:].strip()
+        if square[0] != '-' and square[0] != '+':
+            square = '+' + square
         square = one_checker(space_insert(square).strip())
         if square_pos > eq_pos:
             square = side_swap(square)
+        square = zero_checker(square)
     else:
         square = ''
         square_pos = 0
@@ -43,9 +47,12 @@ def find_linear(equation):
             linear = linear[:-1].strip()
         if linear[0] == '=':
             linear = linear[1:].strip()
+        if linear[0] != '-' and linear[0] != '+':
+            linear = '+' + linear
         linear = one_checker(space_insert(linear).strip())
         if linear_pos > eq_pos:
             linear = side_swap(linear)
+        linear = zero_checker(linear)
     else:
         linear = ''
         linear_pos = 0
@@ -63,6 +70,8 @@ def find_free(equation):
             free = free[:-1].strip()
         if free[0] == '=':
             free = free[1:].strip()
+        if free[0] != '-' and free[0] != '+':
+            free = '+' + free
         free = space_insert(free)
         if free_pos > eq_pos:
             free = side_swap(free)
@@ -87,6 +96,15 @@ def one_checker(checked):
             checked = checked[:2] + checked[3:]
         else:
             checked = checked[1:]
+    return checked
+
+
+def zero_checker(checked):
+    try:
+        if checked[0] == '0' or checked[2] == '0':
+            checked = ''
+    except IndexError:
+        pass
     return checked
 
 
@@ -122,6 +140,36 @@ def space_check(equation):
     return equation
 
 
+def solve_ready():
+    global a
+    global b
+    global c
+    if square != '':
+        if square[2] == 'x':
+            a = 1
+        elif square[0] == '-':
+            a = int(square[0] + square[2:-2])
+        else:
+            a = int(square[2:-2])
+    else:
+        a = 0
+    if linear != '':
+        if linear[2] == 'x':
+            b = 1
+        elif linear[0] == '-':
+            b = int(linear[0] + linear[2:-1])
+        else:
+            b = int(linear[2:-1])
+    else:
+        b = 0
+    if free == '':
+        c = 0
+    else:
+        c = int(free[0] + free[2:])
+
+    return
+
+
 def normalize_equation(equation):
     global eq_pos
     eq_pos = re.search('=', equation).start()
@@ -145,4 +193,27 @@ print(normalize_equation("2x + x2 - 3 = 0"))  # "x2 + 2x - 3 = 0"
 
 
 def solve_equation(equation):
-    return
+    equation = normalize_equation(equation)
+    solve_ready()
+    print(a, b, c)
+    if a != 0:
+        d = (b**2) - (4*(a*c))
+        if d < 0:
+           answer = 'None'
+        elif d == 0:
+            x1 = -b / (2 * a)
+            answer = 'x = ', round(x1, 2)
+        else:
+            x1 = ((-b + math.sqrt(d)) / (2 * a))
+            x2 = ((-b - math.sqrt(d)) / (2 * a))
+            if x2 > x1:
+                answer = 'x1 = ' + repr(round(x1, 2)) + ', x2 = ' + repr(round(x2, 2))
+            elif x1 > x2:
+                answer = 'x1 = ' + repr(round(x2, 2)) + ', x2 = ' + repr(round(x1, 2))
+    elif b != 0:
+        answer = 'x = ' + repr((c / (-b)))
+    else:
+        answer = 'None'
+    return answer
+
+print(solve_equation("2x2 + 2 = 0"))
