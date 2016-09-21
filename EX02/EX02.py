@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 1.0
+:version: 1.1.1
 :failed: all ;)
 """
 
@@ -222,7 +222,7 @@ def solve_equation(equation):
             answer = 'None'
         elif d == 0:
             x1 = -b / (2 * a)
-            answer = 'x = ', round(x1, 2)
+            answer = 'x = ' + repr(round(x1, 2))
         else:
             x1 = ((-b + math.sqrt(d)) / (2 * a))
             x2 = ((-b - math.sqrt(d)) / (2 * a))
