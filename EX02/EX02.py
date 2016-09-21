@@ -99,6 +99,12 @@ def find_free(equation):
 
 
 def space_insert(checked):
+    """
+    Function for space insertion.
+
+    :param checked: input (square, linear, free)
+    :return: input with space after sign
+    """
     p = re.compile('(\+|-)')
     var1 = p.search(checked)
     if var1 is not None and checked[1] != ' ':
@@ -107,6 +113,12 @@ def space_insert(checked):
 
 
 def one_checker(checked):
+    """
+    Function for check on one multiplier.
+
+    :param checked: input (square, linear)
+    :return: input, but with 1 multiplier eliminated
+    """
     d = re.compile('(\s|^)1x2?')
     if d.search(checked) is not None:
         if checked[0] == '-' or checked[0] == '+':
@@ -117,6 +129,12 @@ def one_checker(checked):
 
 
 def zero_checker(checked):
+    """
+    Function for elimination 0 variables.
+
+    :param checked: input (square, linear)
+    :return: eliminates if 0 multiplier is present
+    """
     try:
         if checked[0] == '0' or checked[2] == '0':
             checked = ''
@@ -126,6 +144,12 @@ def zero_checker(checked):
 
 
 def side_swap(var1):
+    """
+    Function for swapping sides (around equation sign).
+
+    :param var1: input (square, linear, free)
+    :return: -(input)
+    """
     if var1[0] != '-':
         if var1[0] == '+':
             var1 = '-' + var1[1:]
@@ -137,6 +161,11 @@ def side_swap(var1):
 
 
 def xminus():
+    """
+    Function for checking on positive square.
+
+    :return: changes sign if square is negative
+    """
     global square
     global linear
     global free
@@ -151,6 +180,12 @@ def xminus():
 
 
 def space_check(equation):
+    """
+    Function for eliminating spare spaces.
+
+    :param equation: main program input
+    :return: equation with fixed spaces
+    """
     for i in range(len(equation) - 1, 0, -1):
         if equation[i] == ' ' and equation[i + 1] == ' ':
             equation = equation[:i + 1] + equation[i + 2:]
@@ -158,6 +193,11 @@ def space_check(equation):
 
 
 def solve_ready():
+    """
+    Function for converting parts of equation in solve-ready state.
+
+    :return: solve-ready multipliers
+    """
     global a
     global b
     global c
@@ -188,6 +228,12 @@ def solve_ready():
 
 
 def normalize_equation(equation):
+    """
+    Function for arranging parts of equation.
+
+    :param equation: main program input
+    :return: equation in user-friendly appearance
+    """
     global eq_pos
     eq_pos = re.search('=', equation).start()
     equation = ' ' + equation + ' '
@@ -199,23 +245,18 @@ def normalize_equation(equation):
     equation = space_check(equation)
     if equation[0] == '+':
         equation = equation[2:]
-    print('square:', square)
-    print('linear:', linear, len(linear))
-    print('free:', free)
     return equation
 
 
-print(normalize_equation("2x + x2 - 3 = 0"))  # "x2 + 2x - 3 = 0"
-
-
-# print(normalize_equation("0 = 3 + 1x2"))  # "x2 + 3 = 0"
-# print(normalize_equation("2x + 2 = 2x2"))  # "2x2 - 2x - 2 = 0"
-
-
 def solve_equation(equation):
+    """
+    It slices, it dices and also solves equations!
+
+    :param equation: main program input
+    :return: answer(s) for equation
+    """
     equation = normalize_equation(equation)
     solve_ready()
-    print(a, b, c)
     if a != 0:
         d = (b ** 2) - (4 * (a * c))
         if d < 0:
@@ -236,5 +277,3 @@ def solve_equation(equation):
         answer = 'None'
     return answer
 
-
-print(solve_equation("9x2 -12x +4 = 0"))
