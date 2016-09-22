@@ -2,8 +2,8 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 2.3
-:failed: all ;)
+:version: 2.3.1 (Final)
+:failed: None
 """
 
 import re
@@ -17,8 +17,6 @@ def find_square(equation, eq_pos):
     :param equation: where to find squared part
     :return: squared part and its position
     """
-    #global square
-    #global square_pos
     p = re.compile('(\+|-|=)?\s*[1-9]?\d*(x2)(\+|-|=|\s)')
     square = p.search(equation)
     if square is not None:
@@ -46,8 +44,6 @@ def find_linear(equation, eq_pos):
     :param equation: where to find linear part
     :return: linear part and its position
     """
-    #global linear
-    #global linear_pos
     p = re.compile('(\+|-|=)?\s*\d*x[^2]')
     linear = p.search(equation)
     if linear is not None:
@@ -75,8 +71,6 @@ def find_free(equation, eq_pos):
     :param equation: where to find free part
     :return: free part and its position
     """
-    #global free
-    #global free_pos
     p = re.compile('(\+|-)?(\W|\s)?(=|\+|-|\s|^)[1-9](\d+)?(=|\+|-|\s|$)')
     free = p.search(equation)
     if free is not None:
@@ -165,9 +159,6 @@ def xminus(square, linear, free):
 
     :return: changes sign if square is negative
     """
-    #global square
-    #global linear
-    #global free
     if square != '':
         if square[0] == '-':
             square = side_swap(square)
@@ -197,12 +188,6 @@ def solve_ready(square, linear, free):
 
     :return: solve-ready multipliers
     """
-    #global a
-    #global b
-    #global c
-    print(square)
-    print(linear)
-    print(free)
     if square != '':
         if square[2] == 'x':
             a = 1
@@ -225,9 +210,6 @@ def solve_ready(square, linear, free):
         c = 0
     else:
         c = int(free[0] + free[2:])
-    print(a)
-    print(b)
-    print(c)
     return a, b, c
 
 
@@ -238,7 +220,6 @@ def normalize_equation(equation):
     :param equation: main program input
     :return: equation in user-friendly appearance
     """
-    #global eq_pos
     eq_pos = re.search('=', equation).start()
     equation = ' ' + equation + ' '
     find_square(equation, eq_pos)
@@ -283,6 +264,3 @@ def solve_equation(equation):
         answer = None
     return answer
 
-testing = 'x2 - 4 = 0'
-print(normalize_equation(testing))
-print(solve_equation(testing))
