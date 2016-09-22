@@ -2,7 +2,7 @@
 Tracks two bunnies as they jump.
 
 :Author: Egils Looga.
-:version: 4.0.
+:version: 4.1.
 :failed: test_cant_catch_me.
 """
 from fractions import Fraction
