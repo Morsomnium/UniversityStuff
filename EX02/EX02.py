@@ -2,15 +2,15 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 2.1.0
-:failed: none
+:version: 2.0
+:failed: all ;)
 """
 
 import re
 import math
 
 
-def find_square(equation):
+def find_square(equation, eq_pos):
     """
     Function for finding squared part in equation.
 
@@ -20,7 +20,6 @@ def find_square(equation):
     #global square
     #global square_pos
     p = re.compile('(\+|-|=)?\s*[1-9]?\d*(x2)(\+|-|=|\s)')
-    eq_pos = re.search('=', equation).start()
     square = p.search(equation)
     if square is not None:
         square_pos = square.start(0)
@@ -37,11 +36,10 @@ def find_square(equation):
         square = zero_checker(square)
     else:
         square = ''
-        square_pos = 0
     return square
 
 
-def find_linear(equation):
+def find_linear(equation, eq_pos):
     """
     Function for finding linear part in equation.
 
@@ -51,7 +49,6 @@ def find_linear(equation):
     #global linear
     #global linear_pos
     p = re.compile('(\+|-|=)?\s*\d*x[^2]')
-    eq_pos = re.search('=', equation).start()
     linear = p.search(equation)
     if linear is not None:
         linear_pos = linear.start(0)
@@ -68,11 +65,10 @@ def find_linear(equation):
         linear = zero_checker(linear)
     else:
         linear = ''
-        linear_pos = 0
     return linear
 
 
-def find_free(equation):
+def find_free(equation, eq_pos):
     """
     Function for finding free part in equation.
 
@@ -82,7 +78,6 @@ def find_free(equation):
     #global free
     #global free_pos
     p = re.compile('(\+|-)?(\W|\s)?(^x|=|\+|-|\s|^)[1-9](\d+)?(^x|=|\+|-|\s|$)')
-    eq_pos = re.search('=', equation).start()
     free = p.search(equation)
     if free is not None:
         free_pos = free.start()
@@ -99,7 +94,6 @@ def find_free(equation):
         free = free.strip()
     else:
         free = ''
-        free_pos = 0
     return free
 
 
@@ -197,7 +191,7 @@ def space_check(equation):
     return equation
 
 
-def solve_ready(square, linear, free):
+def solve_ready():
     """
     Function for converting parts of equation in solve-ready state.
 
@@ -206,9 +200,6 @@ def solve_ready(square, linear, free):
     #global a
     #global b
     #global c
-    print(square)
-    print(linear)
-    print(free)
     if square != '':
         if square[2] == 'x':
             a = 1
@@ -232,7 +223,7 @@ def solve_ready(square, linear, free):
     else:
         c = int(free[0] + free[2:])
 
-    return a, b, c
+    return
 
 
 def normalize_equation(equation):
@@ -243,8 +234,12 @@ def normalize_equation(equation):
     :return: equation in user-friendly appearance
     """
     #global eq_pos
+    eq_pos = re.search('=', equation).start()
     equation = ' ' + equation + ' '
-    square, linear, free = xminus(find_square(equation), find_linear(equation), find_free(equation))
+    find_square(equation, eq_pos)
+    find_linear(equation, eq_pos)
+    find_free(equation, eq_pos)
+    square, linear, free =xminus(find_square(equation, eq_pos), find_linear(equation, eq_pos), find_free(equation, eq_pos))
     equation = '{} {} {} = 0'.format(square, linear, free).strip()
     equation = space_check(equation)
     if equation[0] == '+':
@@ -259,8 +254,8 @@ def solve_equation(equation):
     :param equation: main program input
     :return: answer(s) for equation
     """
-    square, linear, free = xminus(find_square(equation), find_linear(equation),find_free(equation))
-    a, b, c = solve_ready(square, linear, free)
+    equation = normalize_equation(equation)
+    solve_ready()
     if a != 0:
         d = (b ** 2) - (4 * (a * c))
         if d < 0:
@@ -281,5 +276,6 @@ def solve_equation(equation):
         answer = 'None'
     return answer
 
-print(normalize_equation('1x2+0x-27=0'))
-print(solve_equation('1x2+0x-27=0'))
+testing = '6x2 + 11x - 35 = 0'
+#  print(solve_equation(testing))
+print(normalize_equation(testing))
