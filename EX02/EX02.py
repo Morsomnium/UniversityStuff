@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 2.0
+:version: 2.1
 :failed: all ;)
 """
 
@@ -191,7 +191,7 @@ def space_check(equation):
     return equation
 
 
-def solve_ready():
+def solve_ready(square, linear, free):
     """
     Function for converting parts of equation in solve-ready state.
 
@@ -223,7 +223,7 @@ def solve_ready():
     else:
         c = int(free[0] + free[2:])
 
-    return
+    return a, b, c
 
 
 def normalize_equation(equation):
@@ -239,7 +239,7 @@ def normalize_equation(equation):
     find_square(equation, eq_pos)
     find_linear(equation, eq_pos)
     find_free(equation, eq_pos)
-    square, linear, free =xminus(find_square(equation, eq_pos), find_linear(equation, eq_pos), find_free(equation, eq_pos))
+    square, linear, free = xminus(find_square(equation, eq_pos), find_linear(equation, eq_pos), find_free(equation, eq_pos))
     equation = '{} {} {} = 0'.format(square, linear, free).strip()
     equation = space_check(equation)
     if equation[0] == '+':
@@ -254,8 +254,9 @@ def solve_equation(equation):
     :param equation: main program input
     :return: answer(s) for equation
     """
-    equation = normalize_equation(equation)
-    solve_ready()
+    eq_pos = re.search('=', equation).start()
+    square, linear, free = xminus(find_square(equation, eq_pos), find_linear(equation, eq_pos), find_free(equation, eq_pos))
+    a, b, c = solve_ready(square, linear, free)
     if a != 0:
         d = (b ** 2) - (4 * (a * c))
         if d < 0:
@@ -277,5 +278,5 @@ def solve_equation(equation):
     return answer
 
 testing = '6x2 + 11x - 35 = 0'
-#  print(solve_equation(testing))
+print(solve_equation(testing))
 print(normalize_equation(testing))
