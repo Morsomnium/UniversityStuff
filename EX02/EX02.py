@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 2.1
+:version: 2.3
 :failed: all ;)
 """
 
@@ -77,7 +77,7 @@ def find_free(equation, eq_pos):
     """
     #global free
     #global free_pos
-    p = re.compile('(\+|-)?(\W|\s)?(^x|=|\+|-|\s|^)[1-9](\d+)?(^x|=|\+|-|\s|$)')
+    p = re.compile('(\+|-)?(\W|\s)?(=|\+|-|\s|^)[1-9](\d+)?(=|\+|-|\s|$)')
     free = p.search(equation)
     if free is not None:
         free_pos = free.start()
@@ -225,7 +225,9 @@ def solve_ready(square, linear, free):
         c = 0
     else:
         c = int(free[0] + free[2:])
-
+    print(a)
+    print(b)
+    print(c)
     return a, b, c
 
 
@@ -257,7 +259,8 @@ def solve_equation(equation):
     :param equation: main program input
     :return: answer(s) for equation
     """
-    eq_pos = re.search('=', equation).start()
+    equation = normalize_equation(equation)
+    eq_pos = re.search("=", equation).start()
     square, linear, free = xminus(find_square(equation, eq_pos), find_linear(equation, eq_pos), find_free(equation, eq_pos))
     a, b, c = solve_ready(square, linear, free)
     if a != 0:
@@ -280,6 +283,6 @@ def solve_equation(equation):
         answer = None
     return answer
 
-testing = '1x2 + 0x - 4 = 0'
-print(solve_equation(testing))
+testing = 'x2 - 4 = 0'
 print(normalize_equation(testing))
+print(solve_equation(testing))
