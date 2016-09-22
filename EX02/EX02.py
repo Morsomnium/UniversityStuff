@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 2.0.0
+:version: 2.1.0
 :failed: none
 """
 
@@ -206,6 +206,9 @@ def solve_ready(square, linear, free):
     #global a
     #global b
     #global c
+    print(square)
+    print(linear)
+    print(free)
     if square != '':
         if square[2] == 'x':
             a = 1
@@ -256,7 +259,6 @@ def solve_equation(equation):
     :param equation: main program input
     :return: answer(s) for equation
     """
-    equation = normalize_equation(equation)
     square, linear, free = xminus(find_square(equation), find_linear(equation),find_free(equation))
     a, b, c = solve_ready(square, linear, free)
     if a != 0:
@@ -279,5 +281,5 @@ def solve_equation(equation):
         answer = 'None'
     return answer
 
-print(normalize_equation('-3x2+4x= +5'))
-print(solve_equation('-3x2+4x= +5'))
+print(normalize_equation('1x2+0x-27=0'))
+print(solve_equation('1x2+0x-27=0'))
