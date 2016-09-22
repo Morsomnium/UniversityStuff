@@ -2,7 +2,7 @@
 Tracks two bunnies as they jump.
 
 :Author: Egils Looga.
-:version: 4.0.
+:version: 4.0.1
 :failed: test_cant_catch_me.
 """
 from fractions import Fraction
@@ -21,7 +21,7 @@ def meet_me(pos1, jump_distance1, sleep1, pos2, jump_distance2, sleep2):
     :return: its a but technically its pos1 or pos2
     """
     if pos1 == pos2:
-        a = pos1
+        pos1 = pos2
     elif (jump_distance1 / sleep1 > jump_distance2 / sleep2 and pos1 > pos2) or (jump_distance2 / sleep2 > jump_distance1 / sleep1 and pos2 > pos1):
         pos1 = -1
     elif jump_distance1 / sleep1 == jump_distance2 / sleep2:
