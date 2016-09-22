@@ -200,6 +200,9 @@ def solve_ready(square, linear, free):
     #global a
     #global b
     #global c
+    print(square)
+    print(linear)
+    print(free)
     if square != '':
         if square[2] == 'x':
             a = 1
@@ -260,7 +263,7 @@ def solve_equation(equation):
     if a != 0:
         d = (b ** 2) - (4 * (a * c))
         if d < 0:
-            answer = 'None'
+            answer = None
         elif d == 0:
             x1 = -b / (2 * a)
             answer = 'x = ' + repr(round(x1, 2))
@@ -274,9 +277,9 @@ def solve_equation(equation):
     elif b != 0:
         answer = 'x = ' + repr((c / (-b)))
     else:
-        answer = 'None'
+        answer = None
     return answer
 
-testing = '6x2 + 11x - 35 = 0'
+testing = '1x2 + 0x - 4 = 0'
 print(solve_equation(testing))
 print(normalize_equation(testing))
