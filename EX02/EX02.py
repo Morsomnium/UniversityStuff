@@ -2,8 +2,8 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 1.1.1
-:failed: all ;)
+:version: 2.0
+:failed: none
 """
 
 import re
@@ -17,9 +17,10 @@ def find_square(equation):
     :param equation: where to find squared part
     :return: squared part and its position
     """
-    global square
-    global square_pos
+    #global square
+    #global square_pos
     p = re.compile('(\+|-|=)?\s*[1-9]?\d*(x2)(\+|-|=|\s)')
+    eq_pos = re.search('=', equation).start()
     square = p.search(equation)
     if square is not None:
         square_pos = square.start(0)
@@ -37,7 +38,7 @@ def find_square(equation):
     else:
         square = ''
         square_pos = 0
-    return square, square_pos
+    return square
 
 
 def find_linear(equation):
@@ -47,9 +48,10 @@ def find_linear(equation):
     :param equation: where to find linear part
     :return: linear part and its position
     """
-    global linear
-    global linear_pos
+    #global linear
+    #global linear_pos
     p = re.compile('(\+|-|=)?\s*\d*x[^2]')
+    eq_pos = re.search('=', equation).start()
     linear = p.search(equation)
     if linear is not None:
         linear_pos = linear.start(0)
@@ -67,6 +69,7 @@ def find_linear(equation):
     else:
         linear = ''
         linear_pos = 0
+    return linear
 
 
 def find_free(equation):
@@ -76,9 +79,10 @@ def find_free(equation):
     :param equation: where to find free part
     :return: free part and its position
     """
-    global free
-    global free_pos
+    #global free
+    #global free_pos
     p = re.compile('(\+|-)?(\W|\s)?(^x|=|\+|-|\s|^)[1-9](\d+)?(^x|=|\+|-|\s|$)')
+    eq_pos = re.search('=', equation).start()
     free = p.search(equation)
     if free is not None:
         free_pos = free.start()
@@ -96,6 +100,7 @@ def find_free(equation):
     else:
         free = ''
         free_pos = 0
+    return free
 
 
 def space_insert(checked):
@@ -160,15 +165,15 @@ def side_swap(var1):
     return var1
 
 
-def xminus():
+def xminus(square, linear, free):
     """
     Function for checking on positive square.
 
     :return: changes sign if square is negative
     """
-    global square
-    global linear
-    global free
+    #global square
+    #global linear
+    #global free
     if square != '':
         if square[0] == '-':
             square = side_swap(square)
@@ -192,15 +197,15 @@ def space_check(equation):
     return equation
 
 
-def solve_ready():
+def solve_ready(square, linear, free):
     """
     Function for converting parts of equation in solve-ready state.
 
     :return: solve-ready multipliers
     """
-    global a
-    global b
-    global c
+    #global a
+    #global b
+    #global c
     if square != '':
         if square[2] == 'x':
             a = 1
@@ -224,7 +229,7 @@ def solve_ready():
     else:
         c = int(free[0] + free[2:])
 
-    return
+    return a, b, c
 
 
 def normalize_equation(equation):
@@ -234,13 +239,9 @@ def normalize_equation(equation):
     :param equation: main program input
     :return: equation in user-friendly appearance
     """
-    global eq_pos
-    eq_pos = re.search('=', equation).start()
+    #global eq_pos
     equation = ' ' + equation + ' '
-    find_square(equation)
-    find_linear(equation)
-    find_free(equation)
-    xminus()
+    square, linear, free = xminus(find_square(equation), find_linear(equation), find_free(equation))
     equation = '{} {} {} = 0'.format(square, linear, free).strip()
     equation = space_check(equation)
     if equation[0] == '+':
@@ -256,7 +257,8 @@ def solve_equation(equation):
     :return: answer(s) for equation
     """
     equation = normalize_equation(equation)
-    solve_ready()
+    square, linear, free = xminus(find_square(equation), find_linear(equation),find_free(equation))
+    a, b, c = solve_ready(square, linear, free)
     if a != 0:
         d = (b ** 2) - (4 * (a * c))
         if d < 0:
@@ -276,3 +278,6 @@ def solve_equation(equation):
     else:
         answer = 'None'
     return answer
+
+print(normalize_equation('-3x2+4x= +5'))
+print(solve_equation('-3x2+4x= +5'))
