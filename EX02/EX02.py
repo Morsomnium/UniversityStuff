@@ -2,7 +2,7 @@
 Normalize and solve equations.
 
 :Author: Egils Looga
-:version: 2.3.1 (Final)
+:version: 2.3.2 (Final)
 :failed: None
 """
 
@@ -263,4 +263,3 @@ def solve_equation(equation):
     else:
         answer = None
     return answer
-
