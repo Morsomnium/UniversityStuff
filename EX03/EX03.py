@@ -6,7 +6,6 @@ Decode coded lists.
 :failed: ...
 """
 
-
 def read_file(filename):
     """Read file contents into a list of strings.
 
@@ -48,12 +47,13 @@ def transpose(text):
     # YOUR SOLUTION HERE
     list1 = read_file("secretagents.txt")
     list2 = []
+    tab = ''
     for x in range(len(max(list1, key=len))):
         for y in range(len(list1)):
-            try:
-                list2.insert(list1[y][x])
-            except IndexError:
-                break
+            tab += list1[y][x]
+        list2.append(tab)
+        tab = ''
+
     return list2
 
 
@@ -67,11 +67,29 @@ def find_matching(original, transposed):
     Returns:
     a list of strings that exist in both input lists.
     """
-    # YOUR CODE HERE
-    return []
+    original2 = []
+    for i in range(len(original)):
+        original[i] = original[i].split()
+    for i in range(len(transposed)):
+        transposed[i] = transposed[i].split()
+    for i in range(len(original)):
+            original2.extend(original[i])
+    print(original2)
+    transposed2 = []
+    for i in range(len(transposed)):
+            transposed2.extend(transposed[i])
+    print(transposed2)
+    match = list(set(transposed2).intersection(original2))
+    for i in range(len(match)):
+        try:
+            if len(match[i]) < 2:
+                match.pop(i)
+        except IndexError:
+            break
+    return match
 
-print(read_file('secretagents.txt'))
-print(transpose('secretagents.txt'))
+#print(read_file('secretagents.txt'))
+#print(transpose('secretagents.txt'))
 
 original = read_file("secretagents.txt")
-find_matching(original, transpose(original))
+print(find_matching(original, transpose(original)))
