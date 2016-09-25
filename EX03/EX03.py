@@ -5,6 +5,8 @@ Decode coded lists.
 :version: 0.0.0
 :failed: ...
 """
+
+
 def read_file(filename):
     """Read file contents into a list of strings.
 
@@ -23,7 +25,10 @@ def read_file(filename):
                 lines.append(line[:-1])
             else:
                 lines.append(line)
-        print(lines[3], len(lines[3]))
+        wid = int(len(max(lines, key=len)))
+        for i in range(len(lines)):
+            if len(lines[i]) < wid:
+                lines[i] = lines[i].ljust(wid)
     return lines
 
 
@@ -41,7 +46,15 @@ def transpose(text):
     or ["A", "B", "CC"] => ["ABC", "  C"]
     """
     # YOUR SOLUTION HERE
-    return ["No, mr Bond, I expect you to die!"]
+    list1 = read_file("secretagents.txt")
+    list2 = []
+    for x in range(len(max(list1, key=len))):
+        for y in range(len(list1)):
+            try:
+                list2.insert(list1[y][x])
+            except IndexError:
+                break
+    return list2
 
 
 def find_matching(original, transposed):
@@ -57,6 +70,8 @@ def find_matching(original, transposed):
     # YOUR CODE HERE
     return []
 
-
-read_file('secretagents.txt')
 print(read_file('secretagents.txt'))
+print(transpose('secretagents.txt'))
+
+original = read_file("secretagents.txt")
+find_matching(original, transpose(original))
