@@ -46,7 +46,7 @@ def transpose(text):
     or ["A", "B", "CC"] => ["ABC", "  C"]
     """
     # YOUR SOLUTION HERE
-    list1 = read_file(original)
+    list1 = text
     list2 = []
     tab = ''
     for x in range(len(max(list1, key=len))):
@@ -92,5 +92,5 @@ def find_matching(original, transposed):
 #print(read_file('secretagents.txt'))
 #print(transpose('secretagents.txt'))
 
-#original = read_file("secretagents.txt")
-#print(find_matching(original, transpose(original)))
+original = read_file("secretagents.txt")
+print(find_matching(original, transpose(original)))
