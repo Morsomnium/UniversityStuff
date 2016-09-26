@@ -45,7 +45,7 @@ def transpose(text):
     or ["A", "B", "CC"] => ["ABC", "  C"]
     """
     # YOUR SOLUTION HERE
-    list1 = read_file("secretagents.txt")
+    list1 = read_file(text)
     list2 = []
     tab = ''
     for x in range(len(max(list1, key=len))):
