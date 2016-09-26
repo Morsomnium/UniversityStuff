@@ -6,6 +6,7 @@ Decode coded lists.
 :failed: ...
 """
 
+
 def read_file(filename):
     """Read file contents into a list of strings.
 
@@ -45,7 +46,7 @@ def transpose(text):
     or ["A", "B", "CC"] => ["ABC", "  C"]
     """
     # YOUR SOLUTION HERE
-    list1 = read_file(text)
+    list1 = read_file(original)
     list2 = []
     tab = ''
     for x in range(len(max(list1, key=len))):
