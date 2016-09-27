@@ -89,8 +89,8 @@ def find_matching(original, transposed):
             break"""
     return match
 
-print('read file:', read_file('secretagents.txt'))
-print(transpose(read_file('secretagents.txt')))
+# print('read file:', read_file('secretagents.txt'))
+# print(transpose(read_file('secretagents.txt')))
 
 # original = read_file("secretagents.txt")
 # print(find_matching(original, transpose(original)))
