@@ -2,7 +2,7 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 1.6
+:version: 1.7
 :failed: ...
 """
 
@@ -86,7 +86,6 @@ def find_matching(original, transposed):
     print('orig:', original)
     print('trans2:', transposed2)
     match = list(set(transposed2).intersection(original2))
-    print(len(original2), original2[35])
     for i in range(len(original2) - 1, 0, -1):
         if original2[i] not in match:
             original2.pop(i)
