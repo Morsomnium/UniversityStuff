@@ -2,7 +2,7 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 1.8
+:version: 1.8.1
 :failed: not_square
 """
 
@@ -61,6 +61,19 @@ def transpose(text):
     return list2
 
 
+def magic_touch(thing):
+    """
+    Word separator
+    :param thing: input
+    :return: output after touch
+    """
+    another_thing = []
+    for i in range(len(thing)):
+        thing[i] = thing[i].split()
+        another_thing.extend(thing[i])
+    return another_thing
+
+
 def find_matching(original, transposed):
     """Find matching strings that exist in both lists.
 
@@ -76,32 +89,32 @@ def find_matching(original, transposed):
     for i in range(len(original)):
         if len(original[i]) < wid:
             original[i] = original[i].ljust(wid)
-    # print('orig:', original)
-    original2 = []
-    transposed2 = []
+    original = magic_touch(original)
+    transposed = magic_touch(transposed)
+    """
     for i in range(len(original)):
         original[i] = original[i].split()
         original2.extend(original[i])
     for i in range(len(transposed)):
         transposed[i] = transposed[i].split()
-        transposed2.extend(transposed[i])
+        transposed2.extend(transposed[i])"""
     # print('orig2:', original2)
     # print('orig:', original)
     # print('trans2:', transposed2)
-    match = list(set(transposed2).intersection(original2))
-    for i in range(len(original2) - 1, 0, -1):
-        if original2[i] not in match:
-            original2.pop(i)
-    for i in range(len(original2) - 1, 0, -1):
-        if len(original2[i]) < 2:
-            original2.pop(i)
-    for i in range(len(original2)):
+    match = list(set(transposed).intersection(original))
+    for i in range(len(original) - 1, 0, -1):
+        if original[i] not in match:
+            original.pop(i)
+    for i in range(len(original) - 1, 0, -1):
+        if len(original[i]) < 2:
+            original.pop(i)
+    for i in range(len(original)):
         if i % 2 == 1:
-            result.append(original2[i - 1] + ' ' + original2[i])
+            result.append(original[i - 1] + ' ' + original[i])
     return result
 
 # print('read file:', read_file('secretagents.txt'))
 # print(transpose(read_file('secretagents.txt')))
 
-# original = read_file("secretagents.txt")
-# print(find_matching(original, transpose(original)))
+original = read_file("secretagents.txt")
+print(find_matching(original, transpose(original)))
