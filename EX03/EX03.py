@@ -2,7 +2,7 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 0.0.0
+:version: 1.5
 :failed: ...
 """
 
@@ -25,10 +25,6 @@ def read_file(filename):
                 lines.append(line[:-1])
             else:
                 lines.append(line)
-        wid = int(len(max(lines, key=len)))
-        for i in range(len(lines)):
-            if len(lines[i]) < wid:
-                lines[i] = lines[i].ljust(wid)
     return lines
 
 
@@ -46,6 +42,10 @@ def transpose(text):
     or ["A", "B", "CC"] => ["ABC", "  C"]
     """
     # YOUR SOLUTION HERE
+    wid = int(len(max(text, key=len)))
+    for i in range(len(text)):
+        if len(text[i]) < wid:
+            text[i] = text[i].ljust(wid)
     list1 = text
     list2 = []
     tab = ''
@@ -68,6 +68,10 @@ def find_matching(original, transposed):
     Returns:
     a list of strings that exist in both input lists.
     """
+    wid = int(len(max(original, key=len)))
+    for i in range(len(original)):
+        if len(original[i]) < wid:
+            original[i] = original[i].ljust(wid)
     print('orig:', original)
     original2 = []
     transposed2 = []
@@ -93,5 +97,5 @@ def find_matching(original, transposed):
 # print('read file:', read_file('secretagents.txt'))
 # print(transpose(read_file('secretagents.txt')))
 
-# original = read_file("secretagents.txt")
-# print(find_matching(original, transpose(original)))
+original = read_file("secretagents.txt")
+print(find_matching(original, transpose(original)))
