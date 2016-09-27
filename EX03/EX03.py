@@ -63,7 +63,8 @@ def transpose(text):
 
 def magic_touch(thing):
     """
-    Word separator
+    Word separator.
+
     :param thing: input
     :return: output after touch
     """
@@ -116,5 +117,5 @@ def find_matching(original, transposed):
 # print('read file:', read_file('secretagents.txt'))
 # print(transpose(read_file('secretagents.txt')))
 
-original = read_file("secretagents.txt")
-print(find_matching(original, transpose(original)))
+# original = read_file("secretagents.txt")
+# print(find_matching(original, transpose(original)))
