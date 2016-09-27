@@ -2,7 +2,7 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 1.4
+:version: 0.0.0
 :failed: ...
 """
 
@@ -29,11 +29,6 @@ def read_file(filename):
         for i in range(len(lines)):
             if len(lines[i]) < wid:
                 lines[i] = lines[i].ljust(wid)
-        lines2 = []
-        for i in range(len(lines)):
-            lines[i] = lines[i].split()
-            lines2.extend(lines[i])
-        lines = lines2
     return lines
 
 
@@ -75,13 +70,15 @@ def find_matching(original, transposed):
     """
     print('orig:', original)
     original2 = []
+    transposed2 = []
+    for i in range(len(original)):
+        original[i] = original[i].split()
+        original2.extend(original[i])
     for i in range(len(transposed)):
         transposed[i] = transposed[i].split()
+        transposed2.extend(transposed[i])
     print('orig2:', original2)
     print('orig:', original)
-    transposed2 = []
-    for i in range(len(transposed)):
-            transposed2.extend(transposed[i])
     print('trans2:', transposed2)
     match = list(set(transposed2).intersection(original2))
     """for i in range(len(match)):
@@ -92,8 +89,8 @@ def find_matching(original, transposed):
             break"""
     return match
 
-#print(read_file('secretagents.txt'))
-#print(transpose('secretagents.txt'))
+print('read file:', read_file('secretagents.txt'))
+print(transpose(read_file('secretagents.txt')))
 
-#original = read_file("secretagents.txt")
-#print(find_matching(original, transpose(original)))
+original = read_file("secretagents.txt")
+print(find_matching(original, transpose(original)))
