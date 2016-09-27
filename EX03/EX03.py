@@ -2,7 +2,7 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 1.5
+:version: 1.6
 :failed: ...
 """
 
@@ -68,6 +68,7 @@ def find_matching(original, transposed):
     Returns:
     a list of strings that exist in both input lists.
     """
+    result = []
     wid = int(len(max(original, key=len)))
     for i in range(len(original)):
         if len(original[i]) < wid:
@@ -92,7 +93,10 @@ def find_matching(original, transposed):
     for i in range(len(original2) - 1, 0, -1):
         if len(original2[i]) < 2:
             original2.pop(i)
-    return original2
+    for i in range(len(original2)):
+        if i % 2 == 1:
+            result.append(original2[i - 1] + ' ' + original2[i])
+    return result
 
 # print('read file:', read_file('secretagents.txt'))
 # print(transpose(read_file('secretagents.txt')))
