@@ -54,7 +54,7 @@ def transpose(text):
             tab += list1[y][x]
         list2.append(tab)
         tab = ''
-
+    print('list2:', list2)
     return list2
 
 
@@ -68,29 +68,31 @@ def find_matching(original, transposed):
     Returns:
     a list of strings that exist in both input lists.
     """
+    print('orig:', original)
     original2 = []
     for i in range(len(original)):
         original[i] = original[i].split()
     for i in range(len(transposed)):
         transposed[i] = transposed[i].split()
     for i in range(len(original)):
-            original2.extend(original[i])
-    print(original2)
+           original2.extend(original[i])
+    print('orig2:', original2)
+    print('orig:', original)
     transposed2 = []
     for i in range(len(transposed)):
             transposed2.extend(transposed[i])
-    print(transposed2)
+    print('trans2:', transposed2)
     match = list(set(transposed2).intersection(original2))
-    for i in range(len(match)):
+    """for i in range(len(match)):
         try:
             if len(match[i]) < 2:
                 match.pop(i)
         except IndexError:
-            break
+            break"""
     return match
 
 #print(read_file('secretagents.txt'))
 #print(transpose('secretagents.txt'))
 
-#original = read_file("secretagents.txt")
-#print(find_matching(original, transpose(original)))
+original = read_file("secretagents.txt")
+print(find_matching(original, transpose(original)))
