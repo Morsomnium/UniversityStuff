@@ -81,16 +81,16 @@ def find_matching(original, transposed):
     print('orig:', original)
     print('trans2:', transposed2)
     match = list(set(transposed2).intersection(original2))
-    """for i in range(len(match)):
+    for i in range(len(match)):
         try:
             if len(match[i]) < 2:
                 match.pop(i)
         except IndexError:
-            break"""
+            break
     return match
 
 # print('read file:', read_file('secretagents.txt'))
 # print(transpose(read_file('secretagents.txt')))
 
-# original = read_file("secretagents.txt")
-# print(find_matching(original, transpose(original)))
+original = read_file("secretagents.txt")
+print(find_matching(original, transpose(original)))
