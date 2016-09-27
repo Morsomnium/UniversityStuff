@@ -2,7 +2,7 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 1.7
+:version: 1.7.1
 :failed: ...
 """
 
@@ -54,7 +54,7 @@ def transpose(text):
             tab += list1[y][x]
         list2.append(tab)
         tab = ''
-    print('list2:', list2)
+    # print('list2:', list2)
     return list2
 
 
@@ -73,7 +73,7 @@ def find_matching(original, transposed):
     for i in range(len(original)):
         if len(original[i]) < wid:
             original[i] = original[i].ljust(wid)
-    print('orig:', original)
+    # print('orig:', original)
     original2 = []
     transposed2 = []
     for i in range(len(original)):
@@ -82,9 +82,9 @@ def find_matching(original, transposed):
     for i in range(len(transposed)):
         transposed[i] = transposed[i].split()
         transposed2.extend(transposed[i])
-    print('orig2:', original2)
-    print('orig:', original)
-    print('trans2:', transposed2)
+    # print('orig2:', original2)
+    # print('orig:', original)
+    # print('trans2:', transposed2)
     match = list(set(transposed2).intersection(original2))
     for i in range(len(original2) - 1, 0, -1):
         if original2[i] not in match:
