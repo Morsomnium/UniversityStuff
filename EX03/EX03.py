@@ -81,13 +81,14 @@ def find_matching(original, transposed):
     print('orig:', original)
     print('trans2:', transposed2)
     match = list(set(transposed2).intersection(original2))
-    for i in range(len(match)):
-        try:
-            if len(match[i]) < 2:
-                match.pop(i)
-        except IndexError:
-            break
-    return match
+    print(len(original2), original2[35])
+    for i in range(len(original2) - 1, 0, -1):
+        if original2[i] not in match:
+            original2.pop(i)
+    for i in range(len(original2) - 1, 0, -1):
+        if len(original2[i]) < 2:
+            original2.pop(i)
+    return original2
 
 # print('read file:', read_file('secretagents.txt'))
 # print(transpose(read_file('secretagents.txt')))
