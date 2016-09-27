@@ -2,7 +2,7 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 0.0.0
+:version: 1.4
 :failed: ...
 """
 
@@ -29,6 +29,11 @@ def read_file(filename):
         for i in range(len(lines)):
             if len(lines[i]) < wid:
                 lines[i] = lines[i].ljust(wid)
+        lines2 = []
+        for i in range(len(lines)):
+            lines[i] = lines[i].split()
+            lines2.extend(lines[i])
+        lines = lines2
     return lines
 
 
@@ -70,12 +75,8 @@ def find_matching(original, transposed):
     """
     print('orig:', original)
     original2 = []
-    for i in range(len(original)):
-        original[i] = original[i].split()
     for i in range(len(transposed)):
         transposed[i] = transposed[i].split()
-    for i in range(len(original)):
-           original2.extend(original[i])
     print('orig2:', original2)
     print('orig:', original)
     transposed2 = []
