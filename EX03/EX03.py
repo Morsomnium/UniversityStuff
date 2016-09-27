@@ -2,8 +2,8 @@
 Decode coded lists.
 
 :Author: Egils Looga
-:version: 1.7.1
-:failed: ...
+:version: 1.8
+:failed: not_square
 """
 
 
@@ -54,7 +54,10 @@ def transpose(text):
             tab += list1[y][x]
         list2.append(tab)
         tab = ''
-    # print('list2:', list2)
+    print('list2:', list2)
+    for i in range(len(list2)):
+        while list2[i][-1] == ' ':
+            list2[i] = list2[i][:-1]
     return list2
 
 
