@@ -36,12 +36,17 @@ def guess(sentence, guessed_letters, word_dict):
     Use the output from read_words.
     :return: The letter with the best probability.
     """
-
-
+    word_dict = read_words(word_dict)
+    pass_list = []
+    sentence = sentence.split()
+    for x in range(len(sentence)):
+        for i in range(len(word_dict)):
+            if len(list(word_dict)[i]) == len(sentence[i]):
+                pass_list.extend(list(word_dict)[i])
 
     return 't'
 
-
+"""
 def the_game(filename, word_count):
     d = read_words(filename)
     c = collections.Counter(d)
@@ -65,6 +70,6 @@ def the_game(filename, word_count):
         if '_' not in sentence:
             print("Congrats! Number of guesses:" + str(cnt))
             break
-
-c = read_words('EX04.txt')
-print(list(c))
+"""
+#c = read_words('EX04.txt')
+#print(list(c))
