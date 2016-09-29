@@ -9,6 +9,7 @@ import collections
 import random
 from heapq import nlargest
 
+
 def read_words(filename):
     """
     Read file and return dictionary
@@ -36,40 +37,15 @@ def guess(sentence, guessed_letters, word_dict):
     Use the output from read_words.
     :return: The letter with the best probability.
     """
-    word_dict = read_words(word_dict)
+    words = read_words(word_dict)
     pass_list = []
     sentence = sentence.split()
     for x in range(len(sentence)):
-        for i in range(len(word_dict)):
-            if len(list(word_dict)[i]) == len(sentence[i]):
-                pass_list.extend(list(word_dict)[i])
+        for i in range(len(words)):
+            if len(list(words)[i]) == len(sentence[i]):
+                pass_list.extend(list(words)[i])
 
     return 't'
 
-"""
-def the_game(filename, word_count):
-    d = read_words(filename)
-    c = collections.Counter(d)
-    dictionary_size = sum(c.values())
-    correct_sentence = " ".join([x for _, x in nlargest(word_count, ((random.random(), x) for x in c.elements()))])
-    sentence = "".join([x if x == ' ' else '_' for x in correct_sentence])
-    guessed_letters = []
-    print("Correct sentence: " + correct_sentence)
-    print(sentence)
-    cnt = 0
-    while True:
-        guessed_letter = guess(sentence, guessed_letters, d)
-        if guessed_letter is None or guessed_letter in guessed_letters:
-            print("Nothing to guess any more, breaking.")
-            break
-        print('guessed:' + guessed_letter)
-        guessed_letters.append(guessed_letter)
-        sentence = "".join([c if c == guessed_letter else sentence[i] for i, c in enumerate(correct_sentence)])
-        print("Sentence: " + sentence)
-        cnt += 1
-        if '_' not in sentence:
-            print("Congrats! Number of guesses:" + str(cnt))
-            break
-"""
 #c = read_words('EX04.txt')
 #print(list(c))
