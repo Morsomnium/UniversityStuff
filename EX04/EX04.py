@@ -2,7 +2,7 @@
 Game : The Wheel of Fortune.
 
 :Author: Egils Looga
-:version: 1.1.0
+:version: 1.1.1
 :failed: ....
 """
 import collections
@@ -10,23 +10,19 @@ import collections
 
 def read_words(filename):
     """
-    Read file and return dictionary
-    where keys represent words
-    and values represent the count of the given word.
+    Read file and return dictionary where keys represent words and values represent the count of the given word.
 
     Each word is on a separate line.
     :param filename: File to read
     :return: Dictionary of word counts
     """
-
     with open(filename, 'r') as f:
         return collections.Counter(f.read().lower().split())
 
 
 def guess(sentence, guessed_letters, word_dict):
     """
-    Offer the letter which would most probably
-    give the best result.
+    Offer the letter which would most probably give the best result.
 
     :param sentence: Sentence to be guessed.
     :param guessed_letters: A list of already guessed letters
