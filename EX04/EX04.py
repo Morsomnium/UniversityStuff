@@ -48,7 +48,7 @@ def guess(sentence, guessed_letters, word_dict):
     try:
         return letter_list.most_common(1)[0][0]
     except IndexError:
-        return ''
+        return
 
 #c = read_words('EX04.txt')
 #print(guess('', [], c))
