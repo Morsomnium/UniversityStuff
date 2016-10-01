@@ -6,8 +6,6 @@ Game : The Wheel of Fortune.
 :failed: ....
 """
 import collections
-import random
-from heapq import nlargest
 
 
 def read_words(filename):
@@ -37,15 +35,18 @@ def guess(sentence, guessed_letters, word_dict):
     Use the output from read_words.
     :return: The letter with the best probability.
     """
-    words = read_words(word_dict)
-    pass_list = []
+    pass_list = {}
+    letter_list = collections.Counter()
     sentence = sentence.split()
-    for x in range(len(sentence)):
-        for i in range(len(words)):
-            if len(list(words)[i]) == len(sentence[i]):
-                pass_list.extend(list(words)[i])
+    for i in range(len(sentence)):
+        for word in word_dict:
+            if len(sentence[i]) == len(word):
+                pass_list[word] = word_dict.get(word)
+    for word in pass_list:
+        for letter in word:
+            letter_list[letter] += 1 * word_dict.get(word)
 
-    return 't'
+    return list(letter_list.most_common(1))[0][0]
 
 #c = read_words('EX04.txt')
-#print(list(c))
+#print(guess('___ ___ _____', [], c))
