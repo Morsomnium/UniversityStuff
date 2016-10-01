@@ -2,7 +2,7 @@
 Game : The Wheel of Fortune.
 
 :Author: Egils Looga
-:version: 1.2
+:version: 1.2.1
 :failed: ....
 """
 import collections
