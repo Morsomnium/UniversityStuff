@@ -2,7 +2,7 @@
 Game : The Wheel of Fortune.
 
 :Author: Egils Looga
-:version: 2.0
+:version: 2.1
 :failed: ....
 """
 import re
@@ -18,7 +18,7 @@ def read_words(filename):
     :return: Dictionary of word counts
     """
     with open(filename, 'r') as f:
-        return collections.Counter(f.read().lower().split())
+        return collections.Counter(f.read().split())
 
 
 def guess(sentence, guessed_letters, word_dict):
