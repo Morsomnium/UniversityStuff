@@ -2,9 +2,10 @@
 Game : The Wheel of Fortune.
 
 :Author: Egils Looga
-:version: 1.2.1
+:version: 2.0
 :failed: ....
 """
+import re
 import collections
 
 
@@ -34,10 +35,22 @@ def guess(sentence, guessed_letters, word_dict):
     pass_list = {}
     letter_list = collections.Counter()
     sentence = sentence.split()
-    for i in range(len(sentence)):
+
+    for words in sentence:
         for word in word_dict:
-            if len(sentence[i]) == len(word):
-                pass_list[word] = word_dict.get(word)
+            for m in re.finditer("[a-z]", words):
+                if len(words) == len(word):
+                    if m.group() in word:
+                        if word[m.start()] == m.group():
+                            pass_list[word] = word_dict.get(word)
+                    else:
+                        try:
+                            del pass_list[word]
+                        except KeyError:
+                            pass
+            if len(words) == len(word):
+                if len(set(guessed_letters).intersection(word)) == 0:
+                    pass_list[word] = word_dict.get(word)
     for word in pass_list:
         for letter in word:
             letter_list[letter] += 1 * word_dict.get(word)
@@ -50,5 +63,5 @@ def guess(sentence, guessed_letters, word_dict):
     except IndexError:
         return
 
-#c = read_words('EX04.txt')
-#print(guess('', [], c))
+# c = read_words('EX04.txt')
+# print(guess('__ __ _____', [], c))
