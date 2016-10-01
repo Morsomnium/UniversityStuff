@@ -2,7 +2,7 @@
 Game : The Wheel of Fortune.
 
 :Author: Egils Looga
-:version: 1.1.1
+:version: 1.2
 :failed: ....
 """
 import collections
@@ -45,7 +45,10 @@ def guess(sentence, guessed_letters, word_dict):
         if letter in letter_list:
             del letter_list[letter]
 
-    return list(letter_list.most_common(1))[0][0]
+    try:
+        return letter_list.most_common(1)[0][0]
+    except IndexError:
+        return ''
 
-#c = read_words('EX04.txt')
-#print(guess('t__ h__ e____', ['h', 'e', 't'], c))
+c = read_words('EX04.txt')
+print(guess('', [], c))
