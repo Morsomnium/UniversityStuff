@@ -50,5 +50,5 @@ def guess(sentence, guessed_letters, word_dict):
     except IndexError:
         return ''
 
-c = read_words('EX04.txt')
-print(guess('', [], c))
+#c = read_words('EX04.txt')
+#print(guess('', [], c))
