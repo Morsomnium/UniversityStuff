@@ -21,21 +21,7 @@ def read_words(filename):
         return collections.Counter(f.read().split())
 
 
-def guess(sentence, guessed_letters, word_dict):
-    """
-    Offer the letter which would most probably give the best result.
-
-    :param sentence: Sentence to be guessed.
-    :param guessed_letters: A list of already guessed letters
-    (both revealed and not existing letters).
-    :param word_dict: A dictionary of words and their counts.
-    Use the output from read_words.
-    :return: The letter with the best probability.
-    """
-    pass_list = {}
-    letter_list = collections.Counter()
-    sentence = sentence.split()
-
+def funk(sentence, word_dict, pass_list, guessed_letters):
     for words in sentence:
         for word in word_dict:
             for m in re.finditer("[a-z]", words):
@@ -51,6 +37,25 @@ def guess(sentence, guessed_letters, word_dict):
             if len(words) == len(word):
                 if len(set(guessed_letters).intersection(word)) == 0:
                     pass_list[word] = word_dict.get(word)
+    return pass_list
+
+
+def guess(sentence, guessed_letters, word_dict):
+    """
+    Offer the letter which would most probably give the best result.
+
+    :param sentence: Sentence to be guessed.
+    :param guessed_letters: A list of already guessed letters
+    (both revealed and not existing letters).
+    :param word_dict: A dictionary of words and their counts.
+    Use the output from read_words.
+    :return: The letter with the best probability.
+    """
+    pass_list = {}
+    letter_list = collections.Counter()
+    sentence = sentence.split()
+
+    pass_list = funk(sentence, word_dict, pass_list, guessed_letters)
     for word in pass_list:
         for letter in word:
             letter_list[letter] += 1 * word_dict.get(word)
