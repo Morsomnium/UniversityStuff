@@ -80,8 +80,3 @@ def test_sign_del_f():
 def test_side_swap():
     """Check for side swap case."""
     assert EX02.normalize_equation('0 = x2 - 3x - 4') == 'x2 - 3x - 4 = 0'
-
-
-def test_rand_num_x():
-    """Check for random number after x."""
-    assert EX02.normalize_equation('3x4 + 2x + 3 = 0') == '2x + 3 = 0'
