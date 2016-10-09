@@ -27,18 +27,10 @@ def test_neg_f():
     assert EX02.normalize_equation('-3 = 0') == '3 = 0'
 
 
-def test_one_mult_x2():
+def test_one_mult():
     """Clear 1 multiplier."""
     assert EX02.normalize_equation("1x2 + 5x + 3") == "x2 + 5x + 3 = 0"
-
-
-def test_one_mult_x():
-    """Clear 1 multiplier."""
     assert EX02.normalize_equation("1x + 3") == "x + 3 = 0"
-
-
-def test_one_mult_f():
-    """Clear 1 multiplier."""
     assert EX02.normalize_equation("13") == "13 = 0"
 
 
