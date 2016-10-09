@@ -100,3 +100,18 @@ def test_min_1x2_r():
 def test_x_1():
     """Text."""
     assert EX02.normalize_equation('x = 1') == 'x - 1 = 0'
+
+
+def test_x_14():
+    """Text."""
+    assert EX02.normalize_equation('x = 14') == 'x - 14 = 0'
+
+
+def test_x_6():
+    """Text."""
+    assert EX02.normalize_equation('x = 6') == 'x - 6 = 0'
+
+
+def test_x_18():
+    """Text."""
+    assert EX02.normalize_equation('x = 18') == 'x - 18 = 0'
