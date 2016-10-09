@@ -175,3 +175,8 @@ def test_min_42x2_r():
 def test_min_x2_r():
     """Test -1x2 right."""
     assert EX02.normalize_equation('0 = -x2 - 3 + 4x') == 'x2 - 4x + 3 = 0'
+
+
+def test_x_3():
+    """Text."""
+    assert EX02.normalize_equation('x = 3') == 'x - 3 = 0'
