@@ -150,3 +150,13 @@ def test_pl_0x2_l():
 def test_42x2_r():
     """Test 42x2 right."""
     assert EX02.normalize_equation('0 = 42x2 - 3 + 4x') == '42x2 + 4x - 3 = 0'
+
+
+def test_pl_42x2_l():
+    """Test +42x2 right."""
+    assert EX02.normalize_equation('-42x2 - 3 + 4x = 0') == '42x2 - 4x + 3 = 0'
+
+
+def test_1x2_r():
+    """Test +1x2 right."""
+    assert EX02.normalize_equation('0 = 1x2 - 3 + 4x') == 'x2 + 4x - 3 = 0'
