@@ -12,18 +12,10 @@ def test_missing_linear_component():
     assert EX02.normalize_equation("3x2 + 5 = 0") == "3x2 + 5 = 0"
 
 
-def test_neg_x2():
-    """Check x2 negative value."""
+def test_neg():
+    """Check for negative value."""
     assert EX02.normalize_equation('-x2 + 5x + 3 = 0') == 'x2 - 5x - 3 = 0'
-
-
-def test_neg_x():
-    """Check linear negative value."""
     assert EX02.normalize_equation('-5x + 3 = 0') == '5x - 3 = 0'
-
-
-def test_neg_f():
-    """Check free negative value."""
     assert EX02.normalize_equation('-3 = 0') == '3 = 0'
 
 
