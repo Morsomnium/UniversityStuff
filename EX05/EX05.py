@@ -53,4 +53,4 @@ def test_sign_del():
     """Remove + sign in the beginning."""
     assert EX02.normalize_equation("+x2 + 5x + 3") == "x2 + 5x + 3 = 0"
     assert EX02.normalize_equation("+ 5x + 3") == "5x + 3 = 0"
-    assert EX02.normalize_equation("+ 3") == "+ 3 = 0"
+    assert EX02.normalize_equation("+ 3") == "3 = 0"
