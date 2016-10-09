@@ -164,9 +164,14 @@ def test_1x2_r():
 
 def test_pl_x2_r():
     """text."""
-    assert EX02.normalize_equation('0 = x2 + 3x + 5') == 'x2 + 3x + 5 = 0'
+    assert EX02.normalize_equation('0 = +x2 + 3x + 5') == 'x2 + 3x + 5 = 0'
 
 
 def test_min_42x2_r():
     """Test +42x2 right."""
     assert EX02.normalize_equation('0 = -42x2 - 3 + 4x') == '42x2 - 4x + 3 = 0'
+
+
+def test_min_x2_r():
+    """Test -1x2 right."""
+    assert EX02.normalize_equation('0 = -x2 - 3 + 4x') == 'x2 - 4x + 3 = 0'
