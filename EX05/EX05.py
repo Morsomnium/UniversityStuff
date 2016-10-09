@@ -46,7 +46,7 @@ def test_zero_mult():
     """Clear 0 multiplier."""
     assert EX02.normalize_equation("0x2 + 5x + 3") == "5x + 3 = 0"
     assert EX02.normalize_equation("x2 + 0x + 3") == "x2 + 3 = 0"
-    assert EX02.normalize_equation("x2 + 5x + 0") == "x2 + 5x= 0"
+    assert EX02.normalize_equation("x2 + 5x + 0") == "x2 + 5x = 0"
 
 
 def test_sign_del():
