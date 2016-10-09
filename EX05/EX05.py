@@ -12,6 +12,11 @@ def test_missing_linear_component():
     assert EX02.normalize_equation("3x2 + 5 = 0") == "3x2 + 5 = 0"
 
 
+def test_space():
+    """Check for whitespace."""
+    assert EX02.normalize_equation('4x2+11x-4=0') == '4x2 + 11x - 4 = 0'
+
+
 def test_neg():
     """Check for negative value."""
     assert EX02.normalize_equation('-x2 + 5x + 3 = 0') == 'x2 - 5x - 3 = 0'
@@ -38,3 +43,7 @@ def test_sign_del():
     assert EX02.normalize_equation("+x2 + 5x + 3") == "x2 + 5x + 3 = 0"
     assert EX02.normalize_equation("+ 5x + 3") == "5x + 3 = 0"
     assert EX02.normalize_equation("+ 3") == "3 = 0"
+
+
+def test_side_swap():
+    assert EX02.normalize_equation('0 = x2 - 3x - 4') == 'x2 - 3x - 4 = 0'
