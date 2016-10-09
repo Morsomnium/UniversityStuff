@@ -99,4 +99,4 @@ def test_min_1x2_r():
 
 def test_x_1():
     """Text."""
-    assert EX02.normalize_equation('x1 - 3 + 4x2 = 0') == '4x2 + x - 3 = 0'
+    assert EX02.normalize_equation('x = 1') == 'x - 1 = 0'
