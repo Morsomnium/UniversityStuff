@@ -90,3 +90,13 @@ def test_right_zero():
 def test_plus_1x2_r():
     """Test +1x2 right."""
     assert EX02.normalize_equation('0 = +1x2 - 3 +4x') == 'x2 + 4x - 3 = 0'
+
+
+def test_min_1x2_r():
+    """Test -1x2 right."""
+    assert EX02.normalize_equation('0 = -1x2 - 3 +4x') == 'x2 - 4x + 3 = 0'
+
+
+def test_x_1():
+    """Text."""
+    assert EX02.normalize_equation('x1 - 3 + 4x2 = 0') == '4x2 + x - 3 = 0'
