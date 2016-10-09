@@ -84,4 +84,4 @@ def test_side_swap():
 
 def test_rand_num_x():
     """Check for random number after x."""
-    assert EX02.normalize_equation('3x657 + 2x + 3 = 0') == '2x + 3 = 0'
+    assert EX02.normalize_equation('3x6 + 2x + 3 = 0') == '2x + 3 = 0'
