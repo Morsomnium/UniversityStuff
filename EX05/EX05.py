@@ -89,12 +89,12 @@ def test_right_zero():
 
 def test_plus_1x2_r():
     """Test +1x2 right."""
-    assert EX02.normalize_equation('0 = +1x2 - 3 +4x') == 'x2 + 4x - 3 = 0'
+    assert EX02.normalize_equation('0 = +1x2 - 3 + 4x') == 'x2 + 4x - 3 = 0'
 
 
 def test_min_1x2_r():
     """Test -1x2 right."""
-    assert EX02.normalize_equation('0 = -1x2 - 3 +4x') == 'x2 - 4x + 3 = 0'
+    assert EX02.normalize_equation('0 = -1x2 - 3 + 4x') == 'x2 - 4x + 3 = 0'
 
 
 def test_x_1():
@@ -104,14 +104,14 @@ def test_x_1():
 
 def test_min_0x2_r():
     """Test -0x2 right."""
-    assert EX02.normalize_equation('0 = -0x2 - 3 +4x') == '4x - 3 = 0'
+    assert EX02.normalize_equation('0 = -0x2 - 3 + 4x') == '4x - 3 = 0'
 
 
 def test_min_1x2_l():
     """Test -1x2 left."""
-    assert EX02.normalize_equation('-1x2 - 3 +4x = 0') == 'x2 - 4x + 3 = 0'
+    assert EX02.normalize_equation('-1x2 - 3 + 4x = 0') == 'x2 - 4x + 3 = 0'
 
 
 def test_pl_42x2_r():
     """Test +42x2 right."""
-    assert EX02.normalize_equation('0 = +42x2 - 3 +4x') == '42x2 - 4x + 3 = 0'
+    assert EX02.normalize_equation('0 = +42x2 - 3 + 4x') == '42x2 + 4x - 3 = 0'
