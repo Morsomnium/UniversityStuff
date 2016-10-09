@@ -83,5 +83,10 @@ def test_side_swap():
 
 
 def test_right_zero():
-    """Test for right-sided 0x2"""
+    """Test for right-sided 0x2."""
     assert EX02.normalize_equation('0 = 0x2 + 4x + 1') == '4x + 1 = 0'
+
+
+def test_plus_1x2_r():
+    """Test +1x2 right."""
+    assert EX02.normalize_equation('0 = +1x2 - 3 +4x') == 'x2 + 4x - 3 = 0'
