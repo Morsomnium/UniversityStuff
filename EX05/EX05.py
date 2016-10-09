@@ -125,3 +125,13 @@ def test_pl_42x2_r():
 def test_16():
     """text."""
     assert EX02.normalize_equation('16x + 3 = 0') == '16x + 3 = 0'
+
+
+def test_pl_1x2_l():
+    """test."""
+    assert EX02.normalize_equation('+1x2 + 4x + 4 = 0') == 'x2 + 4x + 4 = 0'
+
+
+def test_min_0x2_l():
+    """Test -0x2 left."""
+    assert EX02.normalize_equation('-0x2 - 3 + 4x = 0') == 'x2 - 4x + 3 = 0'
