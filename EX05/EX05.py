@@ -180,3 +180,8 @@ def test_min_x2_r():
 def test_x_3():
     """Text."""
     assert EX02.normalize_equation('x = 3') == 'x - 3 = 0'
+
+
+def test_min_zero():
+    """Text."""
+    assert EX02.normalize_equation('-0=0') == '0 = 0'
