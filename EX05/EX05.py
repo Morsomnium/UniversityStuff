@@ -19,19 +19,19 @@ def test_space():
     assert EX02.normalize_equation('4x2+11x-4=0') == '4x2 + 11x - 4 = 0'
 
 
+def test_min_x2_r():
+    """Test -1x2 right."""
+    assert EX02.normalize_equation('0 = -x2 - 3 + 4x') == 'x2 - 4x + 3 = 0'
+
+
+def test_pl_x2_r():
+    """text."""
+    assert EX02.normalize_equation('0 = +x2 + 3x + 5') == 'x2 + 3x + 5 = 0'
+
+
 def test_neg_sq():
     """Check for negative value."""
     assert EX02.normalize_equation('-x2 + 5x + 3 = 0') == 'x2 - 5x - 3 = 0'
-
-
-def test_neg_lin():
-    """Check for negative value."""
-    assert EX02.normalize_equation('-5x + 3 = 0') == '5x - 3 = 0'
-
-
-def test_neg_f():
-    """Check for negative value."""
-    assert EX02.normalize_equation('-3 = 0') == '3 = 0'
 
 
 def test_one_mult_sq():
@@ -39,34 +39,24 @@ def test_one_mult_sq():
     assert EX02.normalize_equation("1x2 + 5x + 3") == "x2 + 5x + 3 = 0"
 
 
-def test_one_mult_lin():
-    """Clear 1 multiplier."""
-    assert EX02.normalize_equation("1x + 3") == "x + 3 = 0"
-
-
-def test_min_one_mult_lin():
-    """Clear 1 multiplier."""
-    assert EX02.normalize_equation("-1x + 3") == "x - 3 = 0"
-
-
-def test_min_one_mult_lin_r():
-    """Clear 1 multiplier."""
-    assert EX02.normalize_equation("0 = -1x + 3") == "x - 3 = 0"
-
-
-def test_one_mult_f():
-    """Clear 1 multiplier."""
-    assert EX02.normalize_equation("13") == "13 = 0"
-
-
 def test_zero_mult_sq():
     """Clear 0 multiplier."""
     assert EX02.normalize_equation("0x2 + 5x + 3") == "5x + 3 = 0"
 
 
-def test_zero_mult_lin():
-    """Clear 0 multiplier."""
-    assert EX02.normalize_equation("x2 + 0x + 3") == "x2 + 3 = 0"
+def test_sign_del_sq():
+    """Remove + sign in the beginning."""
+    assert EX02.normalize_equation("+x2 + 5x + 3") == "x2 + 5x + 3 = 0"
+
+
+def test_neg_f():
+    """Check for negative value."""
+    assert EX02.normalize_equation('-3 = 0') == '3 = 0'
+
+
+def test_one_mult_f():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("13") == "13 = 0"
 
 
 def test_zero_mult_lin_r():
@@ -77,16 +67,6 @@ def test_zero_mult_lin_r():
 def test_zero_mult_f():
     """Clear 0 multiplier."""
     assert EX02.normalize_equation("x2 + 5x + 0") == "x2 + 5x = 0"
-
-
-def test_sign_del_sq():
-    """Remove + sign in the beginning."""
-    assert EX02.normalize_equation("+x2 + 5x + 3") == "x2 + 5x + 3 = 0"
-
-
-def test_sign_del_lin():
-    """Remove + sign in the beginning."""
-    assert EX02.normalize_equation("+ 5x + 3") == "5x + 3 = 0"
 
 
 def test_sign_del_f():
@@ -179,19 +159,9 @@ def test_1x2_r():
     assert EX02.normalize_equation('0 = 1x2 - 3 + 4x') == 'x2 + 4x - 3 = 0'
 
 
-def test_pl_x2_r():
-    """text."""
-    assert EX02.normalize_equation('0 = +x2 + 3x + 5') == 'x2 + 3x + 5 = 0'
-
-
 def test_min_42x2_r():
     """Test +42x2 right."""
     assert EX02.normalize_equation('0 = -42x2 - 3 + 4x') == '42x2 - 4x + 3 = 0'
-
-
-def test_min_x2_r():
-    """Test -1x2 right."""
-    assert EX02.normalize_equation('0 = -x2 - 3 + 4x') == 'x2 - 4x + 3 = 0'
 
 
 def test_x_3():
@@ -204,11 +174,6 @@ def test_min_zero():
     assert EX02.normalize_equation('-0=0') == '0 = 0'
 
 
-def test_zero_mult_lin_r():
-    """Clear 0 multiplier."""
-    assert EX02.normalize_equation("0 = 0x + 3") == "3 = 0"
-
-
 def test_min_zero_mult_lin():
     """Clear 1 multiplier."""
     assert EX02.normalize_equation("-0x + 3") == "3 = 0"
@@ -217,3 +182,33 @@ def test_min_zero_mult_lin():
 def test_min_zero_mult_lin_r():
     """Clear 1 multiplier."""
     assert EX02.normalize_equation("0 = -0x + 3") == "3 = 0"
+
+
+def test_one_mult_lin():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("1x + 3") == "x + 3 = 0"
+
+
+def test_neg_lin():
+    """Check for negative value."""
+    assert EX02.normalize_equation('-5x + 3 = 0') == '5x - 3 = 0'
+
+
+def test_min_one_mult_lin():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("-1x + 3") == "x - 3 = 0"
+
+
+def test_min_one_mult_lin_r():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("0 = -1x + 3") == "x - 3 = 0"
+
+
+def test_zero_mult_lin():
+    """Clear 0 multiplier."""
+    assert EX02.normalize_equation("x2 + 0x + 3") == "x2 + 3 = 0"
+
+
+def test_sign_del_lin():
+    """Remove + sign in the beginning."""
+    assert EX02.normalize_equation("+ 5x + 3") == "5x + 3 = 0"
