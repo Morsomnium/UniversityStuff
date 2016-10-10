@@ -44,6 +44,16 @@ def test_one_mult_lin():
     assert EX02.normalize_equation("1x + 3") == "x + 3 = 0"
 
 
+def test_min_one_mult_lin():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("-1x + 3") == "x - 3 = 0"
+
+
+def test_min_one_mult_lin_r():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("0 = -1x + 3") == "x - 3 = 0"
+
+
 def test_one_mult_f():
     """Clear 1 multiplier."""
     assert EX02.normalize_equation("13") == "13 = 0"
