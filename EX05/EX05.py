@@ -278,3 +278,13 @@ def test_eleven():
 def test_eleven_r():
     """Text."""
     assert EX02.normalize_equation('0 = 11') == '11 = 0'
+
+
+def test_zero_f():
+    """Text."""
+    assert EX02.normalize_equation('x2 + 2x + 0 = 0') == 'x2 + 2x = 0'
+
+
+def test_zero_f_r():
+    """Text."""
+    assert EX02.normalize_equation('0 = x2 + 2x + 0') == 'x2 + 2x = 0'
