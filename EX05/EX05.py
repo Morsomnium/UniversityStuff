@@ -268,3 +268,13 @@ def test_pl_zero_lin():
 def test_pl_zero_lin_r():
     """Text."""
     assert EX02.normalize_equation('0 = +0x + 3') == '3 = 0'
+
+
+def test_eleven():
+    """Text."""
+    assert EX02.normalize_equation('11 = 0') == '11 = 0'
+
+
+def test_eleven_r():
+    """Text."""
+    assert EX02.normalize_equation('0 = 11') == '11 = 0'
