@@ -69,6 +69,11 @@ def test_zero_mult_lin():
     assert EX02.normalize_equation("x2 + 0x + 3") == "x2 + 3 = 0"
 
 
+def test_zero_mult_lin_r():
+    """Clear 0 multiplier."""
+    assert EX02.normalize_equation("x2 + 3 = 0x") == "x2 + 3 = 0"
+
+
 def test_zero_mult_f():
     """Clear 0 multiplier."""
     assert EX02.normalize_equation("x2 + 5x + 0") == "x2 + 5x = 0"
