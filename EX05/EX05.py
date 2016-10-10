@@ -1,4 +1,5 @@
 """Test for EX02.
+
 failed: _x_10, _x_11, _x_9, _x_15, _x_12, _x_14, _x_18,
 """
 import EX02
@@ -247,3 +248,13 @@ def test_pl_lin():
 def test_pl_lin_r():
     """Text."""
     assert EX02.normalize_equation('0 = +x + 3') == 'x + 3 = 0'
+
+
+def test_pl_one_lin():
+    """Text."""
+    assert EX02.normalize_equation('+1x + 3 = 0') == 'x + 3 = 0'
+
+
+def test_pl_one_lin_r():
+    """Text."""
+    assert EX02.normalize_equation('0 = +1x + 3') == 'x + 3 = 0'
