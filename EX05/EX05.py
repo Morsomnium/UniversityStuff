@@ -212,3 +212,8 @@ def test_zero_mult_lin():
 def test_sign_del_lin():
     """Remove + sign in the beginning."""
     assert EX02.normalize_equation("+ 5x + 3") == "5x + 3 = 0"
+
+
+def test_one_mult_lin_r():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("0 = 1x + 3") == "x + 3 = 0"
