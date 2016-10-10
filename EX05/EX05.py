@@ -237,3 +237,13 @@ def test_min_free_one():
 def test_min_free_one_r():
     """Text."""
     assert EX02.normalize_equation('0 = -1') == '1 = 0'
+
+
+def test_pl_lin():
+    """Text."""
+    assert EX02.normalize_equation('+x + 3 = 0') == 'x + 3 = 0'
+
+
+def test_pl_lin_r():
+    """Text."""
+    assert EX02.normalize_equation('0 = +x + 3') == 'x + 3 = 0'
