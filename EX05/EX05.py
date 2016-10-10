@@ -1,4 +1,6 @@
-"""Test for EX02."""
+"""Test for EX02.
+failed: _x_10, _x_11, _x_9, _x_15, _x_12, _x_14, _x_18,
+"""
 import EX02
 
 
@@ -185,3 +187,8 @@ def test_x_3():
 def test_min_zero():
     """Text."""
     assert EX02.normalize_equation('-0=0') == '0 = 0'
+
+
+def test_x_18():
+    """Text."""
+    assert EX02.normalize_equation('18x = 3') == '18x - 3 = 0'
