@@ -288,3 +288,12 @@ def test_zero_f():
 def test_zero_f_r():
     """Text."""
     assert EX02.normalize_equation('0 = x2 + 2x + 0') == 'x2 + 2x = 0'
+
+def test_min_zero_f():
+    """Text."""
+    assert EX02.normalize_equation('x2 + 2x - 0 = 0') == 'x2 + 2x = 0'
+
+
+def test_min_zero_f_r():
+    """Text."""
+    assert EX02.normalize_equation('0 = x2 + 2x - 0') == 'x2 + 2x = 0'
