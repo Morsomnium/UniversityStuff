@@ -217,3 +217,23 @@ def test_sign_del_lin():
 def test_one_mult_lin_r():
     """Clear 1 multiplier."""
     assert EX02.normalize_equation("0 = 1x + 3") == "x + 3 = 0"
+
+
+def test_free_one():
+    """Text."""
+    assert EX02.normalize_equation('1 = 0') == '1 = 0'
+
+
+def test_free_one_r():
+    """Text."""
+    assert EX02.normalize_equation('0 = 1') == '1 = 0'
+
+
+def test_min_free_one():
+    """Text."""
+    assert EX02.normalize_equation('-1 = 0') == '1 = 0'
+
+
+def test_min_free_one_r():
+    """Text."""
+    assert EX02.normalize_equation('0 = -1') == '1 = 0'
