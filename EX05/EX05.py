@@ -189,6 +189,16 @@ def test_min_zero():
     assert EX02.normalize_equation('-0=0') == '0 = 0'
 
 
-def test_x_18():
-    """Text."""
-    assert EX02.normalize_equation('18x = 3') == '18x - 3 = 0'
+def test_zero_mult_lin_r():
+    """Clear 0 multiplier."""
+    assert EX02.normalize_equation("0 = 0x + 3") == "3 = 0"
+
+
+def test_min_zero_mult_lin():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("-0x + 3") == "3 = 0"
+
+
+def test_min_zero_mult_lin_r():
+    """Clear 1 multiplier."""
+    assert EX02.normalize_equation("0 = -0x + 3") == "3 = 0"
