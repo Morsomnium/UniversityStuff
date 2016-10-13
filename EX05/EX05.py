@@ -333,3 +333,8 @@ def test_x_sum():
 def test_min_r_not_in_pos():
     """Text."""
     assert EX02.normalize_equation('0 = 10 + 14x - 3') == '14x + 7 = 0'
+
+
+def test_x_min():
+    """Text."""
+    assert EX02.normalize_equation('14x - 10x + 3 = 0') == '4x + 3 = 0'
