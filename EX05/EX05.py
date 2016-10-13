@@ -23,7 +23,7 @@ def test_space():
 def test_min_x2_r():
     """Test -1x2 right."""
     assert EX02.normalize_equation('0 = -x2 - 3 + 4x') == 'x2 - 4x + 3 = 0'
-
+0 = -x2 + 3
 
 def test_pl_x2_r():
     """text."""
@@ -289,6 +289,7 @@ def test_zero_f_r():
     """Text."""
     assert EX02.normalize_equation('0 = x2 + 2x + 0') == 'x2 + 2x = 0'
 
+
 def test_min_zero_f():
     """Text."""
     assert EX02.normalize_equation('x2 + 2x - 0 = 0') == 'x2 + 2x = 0'
@@ -297,3 +298,8 @@ def test_min_zero_f():
 def test_min_zero_f_r():
     """Text."""
     assert EX02.normalize_equation('0 = x2 + 2x - 0') == 'x2 + 2x = 0'
+
+
+def test_sum():
+    """Text."""
+    assert EX02.normalize_equation('14x + 10 + 3 = 0') == '14x + 13 = 0'
