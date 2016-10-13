@@ -338,3 +338,8 @@ def test_min_r_not_in_pos():
 def test_x_min():
     """Text."""
     assert EX02.normalize_equation('14x - 10x + 3 = 0') == '4x + 3 = 0'
+
+
+def test_x_neg_min():
+    """Text."""
+    assert EX02.normalize_equation('10x - 14x + 3 = 0') == '4x - 3 = 0'
