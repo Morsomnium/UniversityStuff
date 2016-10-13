@@ -23,7 +23,7 @@ def test_space():
 def test_min_x2_r():
     """Test -1x2 right."""
     assert EX02.normalize_equation('0 = -x2 - 3 + 4x') == 'x2 - 4x + 3 = 0'
-0 = -x2 + 3
+
 
 def test_pl_x2_r():
     """text."""
