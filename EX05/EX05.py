@@ -327,4 +327,4 @@ def test_sum_change():
 
 def test_x_sum():
     """Text."""
-    assert EX02.normalize_equation('14x + 10x + 3 = 0') == '24x + 1 = 0'
+    assert EX02.normalize_equation('14x + 10x + 3 = 0') == '24x + 3 = 0'
