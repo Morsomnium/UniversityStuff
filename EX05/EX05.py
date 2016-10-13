@@ -323,3 +323,8 @@ def test_min_r():
 def test_sum_change():
     """Text."""
     assert EX02.normalize_equation('- 14x + 10 + 3 = 0') == '14x - 13 = 0'
+
+
+def test_x_sum():
+    """Text."""
+    assert EX02.normalize_equation('14x + 10x + 3 = 0') == '24x + 1 = 0'
