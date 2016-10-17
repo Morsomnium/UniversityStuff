@@ -40,7 +40,7 @@ def craft_map(course, views):
         print(posx, posy)
     width = sorted(maps, reverse=True)[0][0] - sorted(maps)[0][0]
     height = sorted(maps, reverse=True, key=lambda coord: coord[1])[0][1] - sorted(maps, key=lambda coord: coord[1])[0][1]
-    rev_map = [['' for j in range(width+1)] for i in range(height+3)]
+    rev_map = [['' for j in range(width + 1)] for i in range(height + 1)]
     for n, row in enumerate(rev_map):
         print(rev_map[n])
     print(len(rev_map), len(rev_map[0]))
@@ -49,23 +49,40 @@ def craft_map(course, views):
     print(sorted(maps, key=lambda coord: coord[1]))
     for key in sorted(maps):
         #print(key)
-        rev_map[key[0] - sorted(maps)[0][0]][key[1] - sorted(maps, key=lambda coord: coord[1])[0][1]] = maps[key]
+        rev_map[key[1] - sorted(maps, key=lambda coord: coord[1])[0][1]][key[0] - sorted(maps)[0][0]] = maps[key]
     for x in rev_map:
         for n, y in enumerate(x):
             if y == '':
                 x[n] = '?'
     for n, row in enumerate(rev_map):
         print(rev_map[n])
-    """right_map = []
-    for i in range(len(rev_map) - 1, 0, -1):
+    right_map = []
+    for i in range(len(rev_map) - 1, -1, -1):
         right_map.append(rev_map[i])
+    print('')
+    for m, x in enumerate(right_map):
+        for n, y in enumerate(x):
+            if y == ' ' and m % 2 == 0 and n % 2 == 0:
+                x[n] = '~'
+            elif y == ' ' and m % 2 == 1 and n % 2 == 1:
+                x[n] = '~'
+            elif y == ' ' and m % 2 == 0 and n % 2 == 1:
+                x[n] = '-'
+            elif y == ' ' and m % 2 == 1 and n % 2 == 0:
+                x[n] = '-'
     for n, row in enumerate(right_map):
-        print(right_map[n])"""
+        print(right_map[n])
+    for i in range(len(right_map)):
+        right_map[i] = ''.join(right_map[i])
 
-    return rev_map
+    str_map = ''
+    str_map = '\n'.join(right_map)
+    print(str_map, '123')
+
+    return str_map
 
 
-craft_map(["NE", "E", "W", "SW", "N", "N", "N", "N", "N", "NE", "NE", "E", "E", "E", "E",
+"""craft_map(["NE", "E", "W", "SW", "N", "N", "N", "N", "N", "NE", "NE", "E", "E", "E", "E",
            "SE", "SE", "SE", "S", "S", "SW", "SW", "W", "W", "W", "W", "W"],
           [[[' ', ' ', 'x'], [' ', '0', ' '], [' ', ' ', ' ']],
            [[' ', 'x', '.'], [' ', '0', 'x'], [' ', ' ', ' ']],
@@ -93,4 +110,4 @@ craft_map(["NE", "E", "W", "SW", "N", "N", "N", "N", "N", "NE", "NE", "E", "E", 
            [['X', 'x', 'x'], [' ', '0', ' '], [' ', ' ', ' ']],
            [['x', 'X', 'x'], [' ', '0', ' '], [' ', ' ', ' ']],
            [[' ', 'x', 'X'], [' ', '0', ' '], [' ', ' ', ' ']],
-           [[' ', ' ', 'x'], [' ', '0', ' '], [' ', ' ', ' ']]])
+           [[' ', ' ', 'x'], [' ', '0', ' '], [' ', ' ', ' ']]])"""
