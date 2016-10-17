@@ -62,7 +62,7 @@ def craft_map(course, views):
     for n, row in enumerate(right_map):
         print(right_map[n])"""
 
-    return
+    return rev_map
 
 
 craft_map(["NE", "E", "W", "SW", "N", "N", "N", "N", "N", "NE", "NE", "E", "E", "E", "E",
