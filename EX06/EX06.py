@@ -62,13 +62,9 @@ def craft_map(course, views):
     print('')
     for m, x in enumerate(right_map):
         for n, y in enumerate(x):
-            if y == ' ' and m % 2 == 0 and n % 2 == 0:
+            if y == ' ' and ((m % 2 == 0 and n % 2 == 0) or (m % 2 == 1 and n % 2 == 1)):
                 x[n] = '~'
-            elif y == ' ' and m % 2 == 1 and n % 2 == 1:
-                x[n] = '~'
-            elif y == ' ' and m % 2 == 0 and n % 2 == 1:
-                x[n] = '-'
-            elif y == ' ' and m % 2 == 1 and n % 2 == 0:
+            elif y == ' ' and ((m % 2 == 0 and n % 2 == 1) or (m % 2 == 1 and n % 2 == 0)):
                 x[n] = '-'
     for n, row in enumerate(right_map):
         print(right_map[n])
@@ -82,7 +78,7 @@ def craft_map(course, views):
     return str_map
 
 
-"""craft_map(["NE", "E", "W", "SW", "N", "N", "N", "N", "N", "NE", "NE", "E", "E", "E", "E",
+craft_map(["NE", "E", "W", "SW", "N", "N", "N", "N", "N", "NE", "NE", "E", "E", "E", "E",
            "SE", "SE", "SE", "S", "S", "SW", "SW", "W", "W", "W", "W", "W"],
           [[[' ', ' ', 'x'], [' ', '0', ' '], [' ', ' ', ' ']],
            [[' ', 'x', '.'], [' ', '0', 'x'], [' ', ' ', ' ']],
@@ -110,4 +106,4 @@ def craft_map(course, views):
            [['X', 'x', 'x'], [' ', '0', ' '], [' ', ' ', ' ']],
            [['x', 'X', 'x'], [' ', '0', ' '], [' ', ' ', ' ']],
            [[' ', 'x', 'X'], [' ', '0', ' '], [' ', ' ', ' ']],
-           [[' ', ' ', 'x'], [' ', '0', ' '], [' ', ' ', ' ']]])"""
+           [[' ', ' ', 'x'], [' ', '0', ' '], [' ', ' ', ' ']]])
