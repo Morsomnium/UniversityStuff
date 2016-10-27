@@ -2,7 +2,7 @@
 Map-drawer.
 
 :Author: Egils Looga
-:version: 0.0
+:version: 0.00.0
 :failed:
 """
 
@@ -24,19 +24,20 @@ def craft_map(course, views):
         for y in x:
             for n, z in enumerate(y):
                 if z == '8' or z == '0':
-                    y[n] = '?'
+                    y[n] = ' '
     for n, i in enumerate(course):
         posx += head[i][0]
         posy += head[i][1]
-        maps[posx, posy] = views[n][1][1]
-        maps[posx - 1, posy] = views[n][1][0]
-        maps[posx + 1, posy] = views[n][1][2]
-        maps[posx, posy - 1] = views[n][2][1]
-        maps[posx, posy + 1] = views[n][0][1]
-        maps[posx - 1, posy + 1] = views[n][0][0]
-        maps[posx - 1, posy - 1] = views[n][2][0]
-        maps[posx + 1, posy + 1] = views[n][0][2]
-        maps[posx + 1, posy - 1] = views[n][2][2]
+        if (posx, posy) not in maps:
+            maps[posx, posy] = views[n][1][1]
+            maps[posx - 1, posy] = views[n][1][0]
+            maps[posx + 1, posy] = views[n][1][2]
+            maps[posx, posy - 1] = views[n][2][1]
+            maps[posx, posy + 1] = views[n][0][1]
+            maps[posx - 1, posy + 1] = views[n][0][0]
+            maps[posx - 1, posy - 1] = views[n][2][0]
+            maps[posx + 1, posy + 1] = views[n][0][2]
+            maps[posx + 1, posy - 1] = views[n][2][2]
         print(posx, posy)
     width = sorted(maps, reverse=True)[0][0] - sorted(maps)[0][0]
     height = sorted(maps, reverse=True, key=lambda coord: coord[1])[0][1] - sorted(maps, key=lambda coord: coord[1])[0][1]
