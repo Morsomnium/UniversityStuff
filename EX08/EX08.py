@@ -1,0 +1,7 @@
+regex_01 = "r'\w(at)\w*'"
+regex_02 = "r''"
+regex_03 = "r'\s*'"
+regex_04 = "r''"
+regex_05 = "r'(1001)+'"
+regex_06 = "r''"
+regex_07 = "r''"
