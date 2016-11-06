@@ -22,7 +22,7 @@ class SentenceGenerator:
 
     def sentence_generator(self, syntax=''):
         temp_iter = cyc(self.rules[syntax])
-        while True:
+        while syntax != '':
             yield next(temp_iter)
         else:
             while True:
