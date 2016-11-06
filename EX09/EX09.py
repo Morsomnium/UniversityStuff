@@ -15,11 +15,11 @@ class SentenceGenerator:
             rules1[rule] = cycle(words)
         self.rules = rules1
 
-    def sentence_generator(self, syntax):
-        while True:
+    def sentence_generator(self, syntax=''):
+        while syntax != '':
             yield next(self.rules[syntax])
-
-"""a = SentenceGenerator('x = b | c | d | e \n z = f | g | h')
+"""
+a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
 b = a.sentence_generator('x')
 print(next(b))
 print(next(b))
