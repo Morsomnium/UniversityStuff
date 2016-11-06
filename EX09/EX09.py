@@ -21,15 +21,16 @@ class SentenceGenerator:
         #print(type(self.rules['x']))
 
     def sentence_generator(self, syntax=''):
-        temp_iter = cyc(self.rules[syntax])
-        while syntax != '':
-            yield next(temp_iter)
+        if syntax != '':
+            temp_iter = cyc(self.rules[syntax])
+            while True:
+                yield next(temp_iter)
         else:
             while True:
                 yield ''
 
 """a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
-b = a.sentence_generator('x')
+b = a.sentence_generator('')
 print(next(b))
 print(next(b))
 print(next(b))
