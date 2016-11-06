@@ -20,7 +20,7 @@ class SentenceGenerator:
         while True:
             yield next(self.rules[syntax])
 
-a = SentenceGenerator('x = b | c | d | e \n z = f | g | h')
+"""a = SentenceGenerator('x = b | c | d | e \n z = f | g | h')
 b = a.sentence_generator('x')
 print(next(b))
 print(next(b))
@@ -29,4 +29,4 @@ print(next(b))
 print(next(b))
 print(next(b))
 print(next(b))
-print(next(b))
+print(next(b))"""
