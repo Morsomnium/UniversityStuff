@@ -1,29 +1,35 @@
 """Sentence generator."""
-from itertools import cycle
+#from itertools import cycle
+
+
+def cyc(lis):
+    while True:
+        for i in lis:
+            yield i
 
 
 class SentenceGenerator:
 
     def __init__(self, rules_string):
-        rules1 = {}
+        rules = {}
         rule_rows = rules_string.split('\n')
         for row in rule_rows:
-            row = row.split()
-            rule = row[0]
-            row = ''.join(row[2:])
-            words = row.split('|')
-            rules1[rule] = cycle(words)
-        self.rules = rules1
+            rule_name, row = row.split(' = ')
+            row = [i for i in row.split() if i != '|']
+            rules[rule_name.strip()] = row
+        self.rules = rules
+        print(type(self.rules['x']))
 
     def sentence_generator(self, syntax=''):
-        while syntax != '':
-            yield next(self.rules[syntax])
+        temp_iter = cyc(self.rules[syntax])
+        while True:
+            yield next(temp_iter)
         else:
             while True:
-                yield next(cycle(['']))
+                yield ''
 
 a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
-b = a.sentence_generator('')
+b = a.sentence_generator('x')
 print(next(b))
 print(next(b))
 print(next(b))
