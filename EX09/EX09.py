@@ -14,7 +14,6 @@ class SentenceGenerator:
             words = row.split('|')
             rules1[rule] = cycle(words)
         self.rules = rules1
-        print(next(self.rules['x']))
 
     def sentence_generator(self, syntax):
         while True:
