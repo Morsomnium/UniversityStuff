@@ -18,7 +18,7 @@ class SentenceGenerator:
             row = [i for i in row.split() if i != '|']
             rules[rule_name.strip()] = row
         self.rules = rules
-        print(type(self.rules['x']))
+        #print(type(self.rules['x']))
 
     def sentence_generator(self, syntax=''):
         temp_iter = cyc(self.rules[syntax])
