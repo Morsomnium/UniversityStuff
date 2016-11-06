@@ -18,9 +18,12 @@ class SentenceGenerator:
     def sentence_generator(self, syntax=''):
         while syntax != '':
             yield next(self.rules[syntax])
-"""
+        else:
+            while True:
+                yield next(cycle(['']))
+
 a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
-b = a.sentence_generator('x')
+b = a.sentence_generator('')
 print(next(b))
 print(next(b))
 print(next(b))
@@ -28,4 +31,4 @@ print(next(b))
 print(next(b))
 print(next(b))
 print(next(b))
-print(next(b))"""
+print(next(b))
