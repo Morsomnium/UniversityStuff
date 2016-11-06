@@ -28,7 +28,7 @@ class SentenceGenerator:
             while True:
                 yield ''
 
-a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
+"""a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
 b = a.sentence_generator('x')
 print(next(b))
 print(next(b))
@@ -38,3 +38,4 @@ print(next(b))
 print(next(b))
 print(next(b))
 print(next(b))
+"""
