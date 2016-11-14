@@ -3,6 +3,7 @@ from PIL import Image
 
 class Fractal:
     """Fractal."""
+
     def __init__(self, size, scale, computation):
         """Constructor.
 
@@ -35,7 +36,8 @@ class Fractal:
         Returns:
         the number of iterations of computation it took to go out of bounds as integer.
         """
-
+        i = 0
+        while self.computation(pixel) < 2:
         return self.computation(pixel)
 
     def save_image(self, filename):
@@ -49,15 +51,7 @@ class Fractal:
 
 if __name__ == "__main__":
     def mandelbrot_computation(pixel):
-        """for y in range(1000):
-            zy = y * (yb - ya) / (1000 - 1) + ya
-            for x in range(1000):
-                zx = x * (xb - xa) / (1000 - 1) + xa
-                z = zx + zy * 1j
-                c = z
-                for i in range(4):
-                    if abs(z) > 2.0: break
-                    z = z * z + c"""
+        """Try."""
         yield 'sqa'
     mandelbrot = Fractal((1000, 1000), [(-2, -2), (2, 2)], mandelbrot_computation)
     mandelbrot.compute()
