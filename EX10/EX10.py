@@ -35,12 +35,8 @@ class Fractal:
         Returns:
         the number of iterations of computation it took to go out of bounds as integer.
         """
-        i = 0
-        while True:
-            try:
-                next(self.computation(pixel))
-            except StopIteration:
-                return i
+
+        return self.computation(pixel)
 
     def save_image(self, filename):
         """
