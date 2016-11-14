@@ -1,8 +1,8 @@
 from PIL import Image
-import math
 
 
 class Fractal:
+    """Fractal."""
     def __init__(self, size, scale, computation):
         """Constructor.
 
@@ -18,9 +18,7 @@ class Fractal:
         self.img = Image.new("RGB", self.size, 0)
 
     def compute(self):
-        """
-        Create the fractal by computing every pixel value.
-        """
+        """Create the fractal by computing every pixel value."""
         for y in range(self.size[1]):
             for x in range(self.size[0]):
                 i = self.pixel_value((x, y))
@@ -55,7 +53,7 @@ class Fractal:
 
 if __name__ == "__main__":
     def mandelbrot_computation(pixel):
-        for y in range(1000):
+        """for y in range(1000):
             zy = y * (yb - ya) / (1000 - 1) + ya
             for x in range(1000):
                 zx = x * (xb - xa) / (1000 - 1) + xa
@@ -63,8 +61,8 @@ if __name__ == "__main__":
                 c = z
                 for i in range(4):
                     if abs(z) > 2.0: break
-                    z = z * z + c
-        yield 0
+                    z = z * z + c"""
+        yield 'sqa'
     mandelbrot = Fractal((1000, 1000), [(-2, -2), (2, 2)], mandelbrot_computation)
     mandelbrot.compute()
     mandelbrot.save_image("mandelbrot.png")
