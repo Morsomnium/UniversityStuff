@@ -26,7 +26,8 @@ class SentenceGenerator:
             while True:
                 gen = ''
                 for word in syntax:
-                    gen += str(next(self.rules[word])) + ' '
+                    if word in self.rules:
+                        gen += str(next(self.rules[word])) + ' '
                 yield gen
         else:
             while True:
