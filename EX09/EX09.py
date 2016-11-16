@@ -16,27 +16,30 @@ class SentenceGenerator:
         for row in rule_rows:
             rule_name, row = row.split(' = ')
             row = [i for i in row.split() if i != '|']
-            rules[rule_name.strip()] = row
+            rules[rule_name.strip()] = cyc(row)
         self.rules = rules
-        #print(type(self.rules['x']))
+        print(self.rules)
 
     def sentence_generator(self, syntax=''):
-        if syntax != '':
-            temp_iter = cyc(self.rules[syntax])
+        syntax = syntax.split()
+        if len(syntax) != 0:
             while True:
-                yield next(temp_iter)
+                gen = ''
+                for word in syntax:
+                    gen += str(next(self.rules[word])) + ' '
+                yield gen
         else:
             while True:
                 yield ''
 
-"""a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
-b = a.sentence_generator('')
-print(next(b))
-print(next(b))
-print(next(b))
-print(next(b))
-print(next(b))
-print(next(b))
-print(next(b))
-print(next(b))
-"""
+if __name__ == "__main__":
+    a = SentenceGenerator('x = b | x | j | a \n z = f | g | h')
+    b = a.sentence_generator('x z')
+    print(next(b))
+    print(next(b))
+    print(next(b))
+    print(next(b))
+    print(next(b))
+    print(next(b))
+    print(next(b))
+    print(next(b))
