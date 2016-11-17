@@ -44,7 +44,7 @@ class Fractal:
             i += 1
         else:
             return i"""
-        open(self.computation(pixel))
+        open(str(self.computation(pixel)))
 
     def save_image(self, filename):
         """
