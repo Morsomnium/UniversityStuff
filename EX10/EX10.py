@@ -25,9 +25,7 @@ class Fractal:
         for y in range(self.size[1]):
             for x in range(self.size[0]):
                 i = self.pixel_value((x, y))
-                cur = i[(x, y)]
-                self.img.putpixel((x, y), (cur % 4 * 64, cur % 8 * 32, cur % 16 * 16))
-        print(self.pixel_dict)
+                self.img.putpixel((x, y), (i % 4 * 64, i % 8 * 32, i % 16 * 16))
 
     def pixel_value(self, pixel):
         """
@@ -39,8 +37,7 @@ class Fractal:
         Returns:
         the number of iterations of computation it took to go out of bounds as integer.
         """
-        self.pixel_dict[pixel] = self.computation(pixel)
-        return self.pixel_dict
+        return self.computation(pixel)
 
     def save_image(self, filename):
         """
