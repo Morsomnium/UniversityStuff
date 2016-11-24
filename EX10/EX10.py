@@ -17,6 +17,7 @@ class Fractal:
         self.scale = scale
         self.computation = computation
         self.img = Image.new("RGB", self.size, 0)
+        self.pixel_dict = {}
 
     def compute(self):
         """Create the fractal by computing every pixel value."""
@@ -24,8 +25,8 @@ class Fractal:
         for y in range(self.size[1]):
             for x in range(self.size[0]):
                 i = self.pixel_value((x, y))
-                self.img.putpixel((x, y), (i % 4 * 64, i % 8 * 32, i % 16 * 16))
-                pixel_dict[(x, y)] = i
+                cur = i[(x, y)]
+                self.img.putpixel((x, y), (cur % 4 * 64, cur % 8 * 32, cur % 16 * 16))
         return pixel_dict
 
     def pixel_value(self, pixel):
@@ -38,7 +39,8 @@ class Fractal:
         Returns:
         the number of iterations of computation it took to go out of bounds as integer.
         """
-        return self.computation(pixel)
+        self.pixel_dict = {pixel: self.computation(pixel)}
+        return self.pixel_dict
 
     def save_image(self, filename):
         """
