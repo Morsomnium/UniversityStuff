@@ -20,12 +20,13 @@ class Fractal:
 
     def compute(self):
         """Create the fractal by computing every pixel value."""
+        pixel_dict = {}
         for y in range(self.size[1]):
             for x in range(self.size[0]):
                 i = self.pixel_value((x, y))
                 self.img.putpixel((x, y), (i % 4 * 64, i % 8 * 32, i % 16 * 16))
-
-        pass
+                pixel_dict[(x, y)] = i
+        return pixel_dict
 
     def pixel_value(self, pixel):
         """
@@ -37,14 +38,7 @@ class Fractal:
         Returns:
         the number of iterations of computation it took to go out of bounds as integer.
         """
-        """
-        i = 0
-        value = self.computation(pixel)
-        while value < 2:
-            i += 1
-        else:
-            return i"""
-        open(str(self.computation((1, 1))))
+        return self.computation(pixel)
 
     def save_image(self, filename):
         """
@@ -58,10 +52,8 @@ class Fractal:
 if __name__ == "__main__":
     def mandelbrot_computation(pixel):
         """Try."""
-        yield 'sqa'
+        c = (4 / 1000 * pixel[0]) ** 2 + (4 / 1000 * pixel[1]) ** 2
+        return c
     mandelbrot = Fractal((1000, 1000), [(-2, -2), (2, 2)], mandelbrot_computation)
     mandelbrot.compute()
     mandelbrot.save_image("mandelbrot.png")
-    mandelbrot2 = Fractal((1000, 1000), [(-0.74877, 0.065053), (-0.74872, 0.065103)], mandelbrot_computation)
-    mandelbrot2.compute()
-    mandelbrot2.save_image("mandelbrot2.png")
