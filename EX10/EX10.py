@@ -1,6 +1,9 @@
 """Drawing the fractal."""
 from PIL import Image
-
+from time import time
+import os
+import images2gif
+from PIL import GifImagePlugin
 
 
 class Fractal:
@@ -49,7 +52,7 @@ class Fractal:
             yb = self.scale[1][1]
             imgx = self.size[0]
             imgy = self.size[1]
-            maxit = 20
+            maxit = 1000
             zx = pixel[0] * (xb - xa) / (imgx - 1) + xa
             zy = pixel[1] * (yb - ya) / (imgy - 1) + ya
             return self.computation((zx, zy, maxit))
@@ -67,43 +70,51 @@ class Fractal:
 
     def gif_create(self, frames):
         img_list = []
+        begin1 = time()
         xa = self.scale[0][0]
         ya = self.scale[0][1]
         xb = self.scale[1][0]
         yb = self.scale[1][1]
-        b = 1
+        b = 0.8 / frames
         for i in range(1, frames+1):
-            temp_img = Fractal((256, 256), [(xa, ya), (xb, yb)], mandelbrot_computation)
+            temp_img = Fractal(self.size, [(xa, ya), (xb, yb)], mandelbrot_computation)
             temp_img.compute()
-            img_list.append(temp_img)
             temp_img.save_image("mandelbrot" + str(i) + ".png")
-            xa *= 0.9
-            xb *= 0.9
-            ya *= 0.9
-            yb *= 0.9
-        print(img_list)
-        self.img_list = img_list
+            xa = xa * 0.8 + b
+            ya *= 0.8
+            xb = xb * 0.8 + b
+            yb *= 0.8
+            print('Image #' + str(i) + ' out of' + str(frames) + ' was created in:' + str(time() - begin1))
 
     def gif_save(self, filename):
         print(self.img_list)
-        self.img.save(filename, save_all=True, append_images=[self.img_list])
+        file_names = sorted((fn for fn in os.listdir('.') if fn.endswith('.png')))
+        images = [Image.open(fn) for fn in file_names]
+        print(file_names)
+        self.img.save(filename, save_all=True, append_images=images)
 
     def image_show(self):
         """Show."""
         self.img.show()
 
 if __name__ == "__main__":
-    def mandelbrot_computation(pixel):
+    def mandelbrot_computation(pixel=(0, 0, 10,), mode=''):
         """Try."""
-        z = complex(0, 0)
-        c = complex(pixel[0], pixel[1])
+        if mode == 'j':
+            z = complex(pixel[0], pixel[1])
+            c = complex(-0.74543, 0.11301)
+        else:
+            c = complex(pixel[0], pixel[1])
+            z = complex(0, 0)
         for i in range(pixel[2]):
             if z.real ** 2 + z.imag ** 2 >= 4:
                 break
             z = z * z + c
         return i
-    mandelbrot = Fractal((256, 256), [(-2, -2), (2.8, 2)], mandelbrot_computation)
-    mandelbrot.compute()
+    begin = time()
+    mandelbrot = Fractal((256, 256), [(-2, -2), (2, 2)], mandelbrot_computation)
+    #mandelbrot.compute()
     #mandelbrot.image_show()
-    mandelbrot.gif_create(3)
-    mandelbrot.gif_save("mandelbrot.gif")
+    #mandelbrot.gif_create(15)
+    mandelbrot.gif_save("mandelbrot1.GIF")
+    print(time() - begin)
